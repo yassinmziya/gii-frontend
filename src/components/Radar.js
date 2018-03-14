@@ -68,7 +68,8 @@ export default class Radar extends React.Component {
 
     componentDidMount() {
         var self = this
-        Axios.all([this.getVariables(['1.', '2.', '3.2.', '4.'], this.state.year), this.getSets(['tza','ind', 'usa'], ['1.', '2.', '3.2.','4.'], this.state.year)])
+        console.log(this.props.categories)
+        Axios.all([this.getVariables(this.props.categories, this.props.year), this.getSets(this.props.countries, this.props.categories, this.props.year)])
             .then((results) => {
                 var variables = results[0]
                 var sets = results[1]
@@ -87,8 +88,8 @@ export default class Radar extends React.Component {
         //console.log(this.state.data)
         return (
             <ReactD3Radar
-                width={500}
-                height={500}
+                width={700}
+                height={700}
                 padding={70}
                 domainMax={100}
                 highlighted={null}
