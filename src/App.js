@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import Radar from './components/Radar'
+import { Dropdown } from 'semantic-ui-react'
 
 class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            year: 2017,
-            categories: ['1.2.','2.2.','3.2.','4.2.','5.2.','6.2.','7.2.'],
-            countries: ['tza', 'egy']
+            year: 2016,
+            categories: ['1.1.','2.1.', '3.1.','4.1.'],
+            countries: ['CHE','USA']
         }
     }
 
