@@ -71,3 +71,7 @@ body {
 .horizontal-list>li {
     float: left;
 }
+
+rect {
+    fill: #000000;
+}
