@@ -49,7 +49,7 @@ export default class BarChart extends React.Component {
     }
 
     render() {
-        var data = [
+        /*var data = [
             {label:'A', value:200},
             {label:'B', value:300},
             {label:'C', value:200},
@@ -59,8 +59,10 @@ export default class BarChart extends React.Component {
             {label:'G', value:200},
             {label:'H', value:300},
             {label:'I', value:200},
-        ];
-        
+        ];*/
+
+        var data = this.props.data
+
         // class
         var isHorizontal = this.props.type === 'h';
         var bar = isHorizontal?this.verticalBar:this.horizontalBar;
@@ -69,7 +71,7 @@ export default class BarChart extends React.Component {
         var barWidth = this.props.narrow?this.barWidth.narrow:this.barWidth.normal;
         var canvasW = isHorizontal?barWidth * data.length + barWidth/10 * (data.length - 2):this.props.width +40;
         var canvasH = isHorizontal?this.props.height + 20:barWidth * data.length + barWidth/10 * (data.length - 2);
-        var transformVerticalChart = isHorizontal?null:'translate('+30+','+0+')';
+        var transformVerticalChart = isHorizontal?null:'translate('+40+','+0+')';
         return (
             <div className={`${isHorizontal?"horizontal":"vertical"}-bar-chart`}>
                 <svg 
@@ -99,7 +101,7 @@ export default class BarChart extends React.Component {
                         }
 
                         type={isHorizontal?'x':'y'}
-                        transform={isHorizontal?'translate('+0+','+this.props.height+')':'translate('+30+','+0+')'}
+                        transform={isHorizontal?'translate('+0+','+this.props.height+')':'translate('+40+','+0+')'}
                     />
                     
                 </svg>
