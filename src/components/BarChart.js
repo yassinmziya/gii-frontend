@@ -60,20 +60,23 @@ export default class BarChart extends React.Component {
             {label:'H', value:300},
             {label:'I', value:200},
         ];
-
-        var barWidth = this.props.narrow?this.barWidth.narrow:this.barWidth.normal;
+        
+        // class
         var isHorizontal = this.props.type === 'h';
         var bar = isHorizontal?this.verticalBar:this.horizontalBar;
 
-        var canvasW = isHorizontal?(barWidth + barWidth/10)* data.length - 1:this.props.width;
-        var canvasH = isHorizontal?this.props.height + 20:barWidth * data.length;
+        // dimensions
+        var barWidth = this.props.narrow?this.barWidth.narrow:this.barWidth.normal;
+        var canvasW = isHorizontal?barWidth * data.length + barWidth/10 * (data.length - 2):this.props.width +40;
+        var canvasH = isHorizontal?this.props.height + 20:barWidth * data.length + barWidth/10 * (data.length - 2);
+        var transformVerticalChart = isHorizontal?null:'translate('+30+','+0+')';
         return (
             <div className={`${isHorizontal?"horizontal":"vertical"}-bar-chart`}>
                 <svg 
                     width={canvasW} 
                     height={canvasH}
                 >
-                    <g>
+                    <g transform={transformVerticalChart}>
                         {
                             data.map((x, i) => { return bar(x.value, null, i) })
                         }
@@ -84,8 +87,19 @@ export default class BarChart extends React.Component {
                                 .domain(data.map(x => x.label))
                                 .range([0,canvasW])
                                 .paddingInner(0.1)
+                                .paddingOuter(0)
                         }
-                        y={this.props.height}
+
+                        yScale={
+                            d3.scaleBand()
+                                .domain(data.map(x => x.label))
+                                .range([0, canvasH])
+                                .paddingInner(0.1)
+                                .paddingOuter(0)
+                        }
+
+                        type={isHorizontal?'x':'y'}
+                        transform={isHorizontal?'translate('+0+','+this.props.height+')':'translate('+30+','+0+')'}
                     />
                     
                 </svg>
@@ -103,5 +117,5 @@ BarChart.propTypes = {
         label: PropTypes.string,
         value: PropTypes.number
     }
-    ))
+    )),
 }

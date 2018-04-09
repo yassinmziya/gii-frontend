@@ -5,13 +5,11 @@ import PropTypes from 'prop-types';
 
 export default class Axis extends React.Component {
     renderAxis() {
-        var xAxis = d3.axisBottom(this.props.xScale).ticks(9)
+        var xAxis = d3.axisBottom(this.props.xScale)
         var yAxis = d3.axisLeft(this.props.yScale)
 
-        console.log(this.props.xScale)
-
         var node = ReactDOM.findDOMNode(this);
-        d3.select(node).call(xAxis)
+        d3.select(node).call(this.props.type === 'x'?xAxis:yAxis)
     }
 
     componentDidMount = () => {
@@ -23,9 +21,8 @@ export default class Axis extends React.Component {
     }
 
     render() {
-        var transform = 'translate('+0+','+this.props.y+')'
         return (
-            <g className="axis" transform={transform}>
+            <g className="axis" transform={this.props.transform}>
             </g>
         )
     }
@@ -34,4 +31,5 @@ export default class Axis extends React.Component {
 Axis.propTypes = {
     xScale: PropTypes.func,
     yScale: PropTypes.func,
+    type: PropTypes.oneOf(['x', 'y']).isRequired
 }

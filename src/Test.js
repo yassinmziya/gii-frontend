@@ -8,7 +8,8 @@ export default class Test extends React.Component {
             <BarChart
                 height={500}
                 width={1000}
-                type="h"
+                type="v"
+                narrow
             />
         )
     }
