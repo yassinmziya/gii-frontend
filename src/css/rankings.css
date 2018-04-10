@@ -7,7 +7,9 @@
 
 #chart {
     width: 95%;
-    height: 500px;
-    background-color: turquoise;
+    height: auto;
+    min-height: 470px;
     margin: 20px auto ;
+    overflow-x: scroll;
+    padding: 20px 0;
 }

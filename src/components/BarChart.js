@@ -17,8 +17,8 @@ export default class BarChart extends React.Component {
         var barWidth = this.props.narrow?this.barWidth.narrow:this.barWidth.normal;
 
         var yScale = d3.scaleLinear()
-            .domain([0, 400])
-            .range([this.props.height, 0]);
+            .domain([0, d3.max(this.props.data.map(x => x.value))])
+            .range([this.props.height-100, 0]);
 
         return (
             <rect 
@@ -35,8 +35,8 @@ export default class BarChart extends React.Component {
         var barWidth = this.props.narrow?this.barWidth.narrow:this.barWidth.normal;
 
         var xScale = d3.scaleLinear()
-            .domain([0, 400])
-            .range([0, this.props.width])
+            .domain([0, d3.max(this.props.data.map(x => x.value))])
+            .range([0, this.props.width-100])
 
         return (
             <rect
@@ -120,4 +120,5 @@ BarChart.propTypes = {
         value: PropTypes.number
     }
     )),
+    axis: PropTypes.bool
 }

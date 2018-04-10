@@ -3,6 +3,7 @@ import { Table } from 'semantic-ui-react';
 import axios from 'axios';
 
 import PageWrap from './PageWrap';
+import BarChart from './BarChart';
 import '../css/rankings.css';
 
 export default class Rankings extends React.Component {
@@ -10,7 +11,7 @@ export default class Rankings extends React.Component {
         super(props);
         this.state = {
             data: [],
-            indicator: '1.rank',
+            indicator: '4.',
             year: 2017
         }
     }
@@ -28,19 +29,33 @@ export default class Rankings extends React.Component {
         var data = this.state.data.filter(x => x.ISO3.length === 3);
         var rankedData = [];
         data.forEach((x) => {
-            rankedData[parseInt(x[this.state.indicator], 10)] = x
+            rankedData[parseInt(x[this.state.indicator+"rank"], 10)] = x
         })
         console.log(rankedData)
         return rankedData
     }
 
     render() {
-        this.getRankedData()
+        var data = this.getRankedData()
 
         return (
             <PageWrap>
                 <div id="rankings">
                     <div id="chart">
+                        <BarChart 
+                            type='h'
+                            data={
+                                data.map((x) => {
+                                    console.log(x)
+                                    return {
+                                        label: x["ISO3"],
+                                        value: x[this.state.indicator+"score"]
+                                    }
+                                })
+                            }
+                            height={400}
+                            axis
+                        />
                     </div>
 
                     <Table basic='very'>
