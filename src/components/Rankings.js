@@ -1,51 +1,30 @@
 import React from 'react';
 import { Table, Accordion, Dropdown } from 'semantic-ui-react';
 import axios from 'axios';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 import PageWrap from './PageWrap';
 import BarChart from './BarChart';
+import actions from './actions';
 import '../css/rankings.css';
 
-export default class Rankings extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: [],
-            indicator: '4.2.3',
-            year: '2013',
-            indicators:null
-        }
-    }
+class Rankings extends React.Component {
 
     componentDidMount = () => {
-        /*axios.get(`http://localhost:3001/api/v1/data/${this.state.year}`).then((res) => {
-            //console.log(res);
-            this.setState({
-                data: res.data
-            });
-        });*/
-        axios.all([
-            axios.get(`http://localhost:3001/api/v1/data/${this.state.year}`),
-            axios.get(`http://localhost:3001/api/v1/heirarchy/${this.state.year}`)
-          ])
-          .then(axios.spread((dataRes, heirarchyRes) => {
-            // do something with both responses]
-            this.setState({
-                data: dataRes.data,
-                indicators: heirarchyRes.data
-            })
-            //console.log(this.state)
-        }));
+        this.props.getData(this.props.rankings.year)
     }
 
     getRankedData = () => {
-        var data = this.state.data.filter(x => x.ISO3.length === 3);
+        var data = this.props.rankings.data.filter(x => x.ISO3.length === 3);
+
         var rankedData = [];
         data.forEach((x) => {
-            var data_present = !Number.isNaN(parseInt(x[this.state.indicator+"score"], 10))
+            var data_present = !Number.isNaN(parseInt(x[this.props.rankings.indicator+"score"], 10))
+
             if(data_present) {
                 //console.log(x[this.state.indicator+"rank"])
-                var index = parseInt(x[this.state.indicator+"rank"], 10)
+                var index = parseInt(x[this.props.rankings.indicator+"rank"], 10)
 
                 var i = 0
                 if(rankedData[index] !== undefined) {
@@ -62,10 +41,9 @@ export default class Rankings extends React.Component {
     }
 
     handleYear = (e, {value}) => {
-        this.setState({
-            year: value
-        })
-        //console.log(value)
+        this.props.getData(value)
+        this.props.setYear(value)
+        //console.log(year)
     }
 
     render() {
@@ -80,7 +58,6 @@ export default class Rankings extends React.Component {
             { key: 2012, value: 2012, text: 2012},
             { key: 2011, value: 2011, text:2011}
         ]
-        //console.log(data)
 
         return (
             <PageWrap>
@@ -92,13 +69,12 @@ export default class Rankings extends React.Component {
                                 data.map((x, i) => {
                                     return {
                                         label: x["ISO3"],
-                                        value: x[this.state.indicator+"score"]
+                                        value: parseInt(x[this.props.rankings.indicator+"score"], 10)
                                     }
                                 })
                             }
                             height={400}
                             axis
-                            narrow
                             max={100}
                         />
                     </div>
@@ -116,10 +92,10 @@ export default class Rankings extends React.Component {
                         </Table.Header>
                         <Table.Body>
                             {
-                                data.map(x => 
-                                    <Table.Row>
+                                data.map((x, i) => {
+                                    return (<Table.Row key={i}>
                                         <Table.Cell collapsing textAlign='center'>
-                                            {x[this.state.indicator+"rank"]}
+                                            {x[this.props.rankings.indicator+"rank"]}
                                         </Table.Cell>
                                         <Table.Cell>
                                             {x["Economy"]}
@@ -128,10 +104,10 @@ export default class Rankings extends React.Component {
                                             {x["ISO3"]}
                                         </Table.Cell>
                                         <Table.Cell>
-                                            {parseFloat(x[this.state.indicator+"score"])}
+                                            {parseFloat(x[this.props.rankings.indicator+"score"])}
                                         </Table.Cell>
-                                    </Table.Row>
-                                )
+                                    </Table.Row>)
+                                })
                             }
                         </Table.Body>
                     </Table>
@@ -140,3 +116,18 @@ export default class Rankings extends React.Component {
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        rankings: state.rankings
+    }
+}
+
+function matchDispatchToProps(dispatch) {
+    return bindActionCreators({
+        getData: actions.getData,
+        setYear: actions.setYear
+    }, dispatch);
+}
+
+export default connect(mapStateToProps, matchDispatchToProps) (Rankings)

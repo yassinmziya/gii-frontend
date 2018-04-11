@@ -111,8 +111,8 @@ export default class BarChart extends React.Component {
 }
 
 BarChart.propTypes = {
-    height: PropTypes.number.isRequired,
-    width: PropTypes.number.isRequired,
+    height: PropTypes.number,
+    width: PropTypes.number,
     type: PropTypes.oneOf(['v', 'h']).isRequired,
     narrow: PropTypes.bool,
     data: PropTypes.arrayOf(PropTypes.shape({
