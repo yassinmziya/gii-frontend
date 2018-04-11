@@ -15,9 +15,9 @@ export default class BarChart extends React.Component {
 
     verticalBar = (value, label, index) => {
         var barWidth = this.props.narrow?this.barWidth.narrow:this.barWidth.normal;
-
+        var max = this.props.max?this.props.max:d3.max(this.props.data.map(x => x.value));
         var yScale = d3.scaleLinear()
-            .domain([0, d3.max(this.props.data.map(x => x.value))])
+            .domain([0, max])
             .range([this.props.height-100, 0]);
 
         return (
@@ -111,8 +111,8 @@ export default class BarChart extends React.Component {
 }
 
 BarChart.propTypes = {
-    height: PropTypes.number.isRequired,
-    width: PropTypes.number.isRequired,
+    height: PropTypes.number,
+    width: PropTypes.number,
     type: PropTypes.oneOf(['v', 'h']).isRequired,
     narrow: PropTypes.bool,
     data: PropTypes.arrayOf(PropTypes.shape({
@@ -120,5 +120,6 @@ BarChart.propTypes = {
         value: PropTypes.number
     }
     )),
-    axis: PropTypes.bool
+    axis: PropTypes.bool,
+    max: PropTypes.number
 }

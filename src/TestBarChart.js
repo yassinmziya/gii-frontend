@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import BarChart from './components/BarChart';
 
-export default class Test extends React.Component {
+export default class TestBarChart extends React.Component {
     constructor(props) {
         super(props);
 
