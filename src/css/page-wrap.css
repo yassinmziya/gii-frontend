@@ -12,11 +12,10 @@
 
 .page-body {
     width: 1170px;
-    height: 100vh;
+    height: auto;
     /*background: #ffffff;*/
     margin: 0 auto;
-    padding: 52px 0px 140px 0px;
-    padding-bottom: 140px;
+    padding: 52px 0px 20px;
 }
 
 .page-header{
