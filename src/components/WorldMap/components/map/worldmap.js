@@ -4,7 +4,8 @@ import {
 	ZoomableGlobe,
 	Geographies,
 	Geography,
-	Marker
+	Marker,
+	Markers,
 } from 'react-simple-maps';
 import {Motion, spring} from 'react-motion';
 import Link from 'react-router-dom/Link';
@@ -42,10 +43,6 @@ var mapStyle = {
 		outline: 'none',
 	}
 };
-
-const positions = [
-	{name: "SWE", coordinates: [18.6435, 60.1282]},
-];
 
 
 function mapClick(geography) {
@@ -88,6 +85,30 @@ const Worldmap = ({center}) => (
 							</Link>
 						))}
 					</Geographies>
+					<Markers>
+						<Marker marker={{ coordinates: center }}>
+							<g transform="translate(-12, -24)">
+								<path
+								  fill="orange"
+								  strokeWidth="2"
+								  strokeLinecap="square"
+								  strokeMiterlimit="10"
+								  strokeLinejoin="miter"
+								  d="M20,9c0,4.9-8,13-8,13S4,13.9,4,9c0-5.1,4.1-8,8-8S20,3.9,20,9z"
+								/>
+								<circle
+								  fill="black"
+								  strokeWidth="2"
+								  strokeLinecap="square"
+								  strokeMiterlimit="10"
+								  strokeLinejoin="miter"
+								  cx="12"
+								  cy="9"
+								  r="3"
+								/>
+							</g>
+						</Marker>
+					</Markers>
 				</ZoomableGlobe>
 			</ComposableMap>
 		)}
