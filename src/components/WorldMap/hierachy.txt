@@ -1,0 +1,25 @@
+Here is what I thought about the App components hierachy:
+
+					<Router>
+					/      \
+			    <entrance page>  <country profile>
+			    /      /
+                   <Head bar>    <World map>
+                    /
+               <Menubutton>
+                  /
+               <Sidebar>
+		/
+           <Country Container>
+	       /    /    ......
+        <Country1>  <Country2>......
+
+
+The entrance page is implemented in sample2.js, country profile is only some texts in sample_profile.js
+
+To communicate between each component, say the sidebar country flag clicked, and the world map rotate, 
+we have to set the real function implement in entrance page, and pass this function as props of each components
+all the way down to the Country1 component. I can only figure out this way to pass parameter between components.
+If you guys can think a more efficient way, please share with me.
+
+And the hierachy looks a little bit tedious, I am open to any suggestions of modification.
