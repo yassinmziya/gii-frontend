@@ -8,16 +8,16 @@ image should be passed from countrycontainer.
 class Country1 extends React.Component {
 	constructor(props) {
 		super(props);
-		
+		this.props.coordinate;
 		this.handleClick = this.handleClick.bind(this);
 	}
 	
 	handleClick() {
-		//Click this country to show the profile
+		var pos = this.props.coordinate;
+		this.props.callbackFromCountryContainer(pos);
 	}
 	
 	render() {
-		var address = require('../../images/sweden.PNG');
 		var img_style = {
 			width: 200,
 			height: 125,
@@ -40,10 +40,10 @@ class Country1 extends React.Component {
 					width:256, 
 					height:200, 
 					textAlign:'center'}}
-				onClick={this.props.click}
+				onClick={this.handleClick}
 			>
 			<img 
-				src={address} 
+				src={this.props.img_src} 
 				style={img_style}/>
 			<div 
 				className="countryName" 

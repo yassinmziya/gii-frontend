@@ -11,8 +11,13 @@ The sidebar component, which is subcomponent of menubutton.
 class My_sidebar extends React.Component {
 	constructor(props) {
 		super(props);
+		this.myCallback = this.myCallback.bind(this);
 	}
 
+	myCallback(pos) {
+		this.props.callbackFromMenubutton(pos);
+	}
+	
 	render() {
 		var svg_style = {
 			width: 40,
@@ -27,9 +32,9 @@ class My_sidebar extends React.Component {
 			style={this.props.style}>
 				<div className="sidebar_head" 
 					style={{
-						display:'flex', 
+						display: 'flex', 
 						width:256, 
-						height:50, 
+						height:30, 
 						backgroundColor:'black',
 					}} >
 					<div className="head_name" 
@@ -42,7 +47,7 @@ class My_sidebar extends React.Component {
 						Select Country
 					</div>
 				</div>
-				<Countrycontainer flagClick={this.props.flagClick}/>
+				<Countrycontainer callbackFromMySidebar={this.myCallback}/>
 			</div>
 		);
 	}
