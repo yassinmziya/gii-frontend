@@ -13,7 +13,7 @@ export default class Test extends React.Component {
             <div>
                 <BarChart 
                 countries={['USA','TZA','CHE']}
-                indicators={['1.','2.','3.','4.','5.','6.']}
+                indicators={['1.','2.','3.','4.']}
                 year={'2015'}
                 />
                 <br/>
@@ -23,7 +23,7 @@ export default class Test extends React.Component {
                 <Radar 
                     height={700}
                     width={700}
-                    padding={70}
+                    padding={100}
                     countries={['USA','TZA','CHE']}
                     indicators={['1.','2.','3.','4.','5.','6.']}
                     year={'2015'}
