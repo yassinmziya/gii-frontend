@@ -17,11 +17,11 @@ class Sample2 extends React.Component {
 		this.flagClick = this.flagClick.bind(this);
 	}
 	
-	flagClick() {
+	flagClick(pos) {
 		this.setState((prevState) => {
 			return {
 				// The coordinates are the real world coordinates for each country.
-				center: [18.6435, 60.1282]
+				center: pos,
 			}
 		});
 	}
@@ -30,7 +30,7 @@ class Sample2 extends React.Component {
 		
 		return (
 			<div className="EntrancePage">
-				<Head_bar flagClick={this.flagClick}/>
+				<Head_bar callbackFromEntrance={this.flagClick}/>
 				<Worldmap center={this.state.center}/>
 			</div>
 		);

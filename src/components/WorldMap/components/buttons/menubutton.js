@@ -12,7 +12,7 @@ class Menubutton extends React.Component {
 			sidebarStyle: {
 				position: 'absolute',
 				left: -256,
-				top: 0,
+				top: 50,
 				borderRightStyle: 'solid',
 				borderRightWidth: 2,
 				backgroundColor: 'grey',
@@ -20,6 +20,7 @@ class Menubutton extends React.Component {
 			baropen: false,
 		};
 		this.buttonClick = this.buttonClick.bind(this);
+		this.myCallback = this.myCallback.bind(this);
 	}
 	
 	buttonClick() {
@@ -28,7 +29,7 @@ class Menubutton extends React.Component {
 			{sidebarStyle: {
 				position: 'absolute',
 				left: 0,
-				top: 0,
+				top: 50,
 				borderRightStyle: 'solid',
 				borderRightWidth: 2,
 				backgroundColor: 'grey',
@@ -40,13 +41,17 @@ class Menubutton extends React.Component {
 			{sidebarStyle: {
 				position: 'absolute',
 				left: -256,
-				top: 0,
+				top: 50,
 				borderRightStyle: 'solid',
 				borderRightWidth: 2,
 				backgroundColor: 'grey',
 			},
 			baropen: false,}));
 		}
+	}
+	
+	myCallback(pos) {
+		this.props.callbackFromHeadbar(pos);
 	}
 	
 	render() {
@@ -71,7 +76,8 @@ class Menubutton extends React.Component {
 				<path d='M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z'
 				 stroke='#FFFFFF' fill='white'></path>
 				</svg>
-				<My_sidebar style={this.state.sidebarStyle} flagClick={this.props.flagClick}/>
+				<My_sidebar style={this.state.sidebarStyle} 
+					callbackFromMenubutton={this.myCallback}/>
 			</div>
 		);
 	}

@@ -10,6 +10,11 @@ class Head_bar extends React.Component {
 		/**Add more controllers states if 
 		*more head bar buttons added
 		*/
+		this.myCallback = this.myCallback.bind(this);
+	}
+	
+	myCallback(pos) {
+		this.props.callbackFromEntrance(pos);
 	}
 	
 	render() {
@@ -30,7 +35,8 @@ class Head_bar extends React.Component {
 					width:'auto', 
 					height:50, 
 					backgroundColor:'black'}}>
-				<Menubutton onClick={this.props.Click} flagClick={this.props.flagClick}/>
+				<Menubutton onClick={this.props.Click} 
+					callbackFromHeadbar={this.myCallback}/>
 				<div className="item" 
 					style={{
 						color:'#FFFFFF', 
