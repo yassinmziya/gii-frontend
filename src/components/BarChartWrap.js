@@ -2,6 +2,7 @@ import React from 'react';
 import Axios from 'axios';
 import {BarChart} from 'react-d3-components';
 import {Button} from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 
 var prefix = "http://localhost:3001/api"
 
@@ -122,7 +123,7 @@ export default class BarChartWrap extends React.Component {
                 groupedBars
                 axes
                 data={data}
-                width={500}
+                width={1000}
                 height={500}
                 margin={{top: 10, bottom: 50, left: 50, right: 10}}
                 tooltipHtml={this.tooltip}
@@ -140,24 +141,8 @@ export default class BarChartWrap extends React.Component {
     }
 }
 
-
-/*<BarChartWrap
-   width={12}
-   data={{
-       countries:[“USA”, “TZA”, “AUS”],
-       indicators:[“4.1.1", “4.1.“],
-       year=2011
-   }}
-/> 
-<BarChart
-                groupedBars
-                axes
-                data={data}
-                width={400}
-                height={400}
-                margin={{top: 10, bottom: 50, left: 50, right: 10}}
-                tooltipHtml={this.tooltip}
-                xAxis={{label: "Indicator"}}
-                yAxis={{label: "Score"}}/>
-
-*/
+BarChartWrap.propTypes = {
+    year : PropTypes.string.isRequired,
+    countries : PropTypes.arrayOf(PropTypes.string).isRequired,
+    indicators : PropTypes.arrayOf(PropTypes.string).isRequired,
+}
