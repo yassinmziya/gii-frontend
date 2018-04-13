@@ -155,8 +155,8 @@ class DataVizualiztion extends React.Component {
             countries={this.state.countries}
             year={this.state.year}
             indicators={this.state.indicators}
-            height={500}
-            width={500}
+            height={700}
+            width={700}
             padding={100}
             />
           }

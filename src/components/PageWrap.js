@@ -38,6 +38,10 @@ export default class PageWrap extends React.Component {
                                     <Link to="/visualization">
                                     <li>COMPARE TWO ECONOMIES</li>
                                     </Link>
+                                    <li>/</li>
+                                    <Link to="/test">
+                                    <li>TEST RANGE</li>
+                                    </Link>
                                 </ul>
                             </div>
                         </div>
@@ -46,7 +50,6 @@ export default class PageWrap extends React.Component {
                         this.props.children
                     }
                 </div>
-                <PageFooter/>
             </div>
         )
     };
