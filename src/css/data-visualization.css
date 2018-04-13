@@ -1,0 +1,25 @@
+.country_selection {
+  height: 150px;
+  align-items: center;
+  align-content: center;
+}
+
+.country_selection Select {
+  margin-top: 40px;
+}
+.country_selection Dropdown{
+  margin-top: 20px;
+}
+
+
+
+ #sidemenu {
+  margin: 0px;
+  margin-right: 100px;
+
+}
+
+Displaychart {
+  margin-left:200px;
+  margin-right: 100px;
+}
