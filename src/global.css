@@ -14,7 +14,11 @@
     float: left;
 }
 
-rect {
+.horizontal-bar-char rect {
+    fill: #000000;
+}
+
+.vertical-bar-char rect {
     fill: #000000;
 }
 
