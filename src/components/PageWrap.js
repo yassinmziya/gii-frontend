@@ -23,9 +23,9 @@ export default class PageWrap extends React.Component {
                         <div className="nav">
                             <div className="table">
                                 <ul>
-                                    <li>VIEW RANKINGS BY INDICATOR</li> 
+                                    <li>VIEW RANKINGS BY INDICATOR</li>
                                     <li>/</li>
-                                    <li> IN-DEPTH ECONOMY REPORTS</li> 
+                                    <li> IN-DEPTH ECONOMY REPORTS</li>
                                     <li>/</li>
                                     <li>COMPARE TWO ECONOMIES</li>
                                 </ul>
