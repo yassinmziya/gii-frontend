@@ -19,7 +19,11 @@
 
 }
 
-Displaychart {
-  margin-left:200px;
-  margin-right: 100px;
+.displayWindow {
+  height: auto;
+  width: 1000px;
+}
+
+.displayWindow svg {
+  margin: 0 auto;
 }

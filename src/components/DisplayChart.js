@@ -9,9 +9,8 @@ class Displaychart extends React.Component {
 		var displayWindowStyle = {
 			// display: 'table',
 			marginLeft: 300,
-			width: 700,
-			height: 350,
-			padding: 20,
+			//width: 700,
+			//padding: 20,
 			backgroundColor: 'white',
 		};
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom';
 import PageWrap from './PageWrap';
 import Displaychart from '../components/DisplayChart';
 import axios from 'axios';
@@ -9,6 +10,9 @@ import { bindActionCreators } from 'redux';
 import actions from './actions';
 import ActionTypes from './actions/ActionTypes';
 import ChartTypes from './common/ChartTypes';
+import BarChartWrap from './BarChartWrap';
+import RadarWrap from './RadarWrap';
+import "../css/data-visualization.css";
 
 class DataVizualiztion extends React.Component {
   constructor(props) {
@@ -16,14 +20,13 @@ class DataVizualiztion extends React.Component {
     this.state = { 
       chartType: ChartTypes.BarChart,
       year:"2017",
-      countries: [],
-      indicators: []
+      countries: ['SWE','USA'],
+      indicators: ['1.', '2.', '3.']
 
     };
   }
 
   handleChange = (e, data) => {
-    console.log(data)
     this.setState({
       [data.id]:data.value
     })
@@ -49,35 +52,39 @@ class DataVizualiztion extends React.Component {
     
     switch (this.state.chartType) {
       case ChartTypes.BarChart:
-        
+          visual = <BarChartWrap />
         break;
         case ChartTypes.Radar:
-        
+          visual = <RadarWrap />
         break;
         default:
+          <h1 style={{color:'red'}}>Error</h1>
         break;
     }
+
   }
 
   render() {
 
     const yearOptions = [
-      {value:'2013', text:'2013'},
-      {value:'2014', text:'2014'},
+      //{value:'2013', text:'2013'},
+      {value:'2014-c', text:'2014-c'},
+      {value:'2014-p', text:'2014-p'},
       {value:'2015', text:'2015'},
-      {value:'2015', text:'2016'},
-      {value:'2015', text:'2017'}
+      {value:'2016', text:'2016'},
+      {value:'2017', text:'2017'}
     ]
 
     const chartOptions = [
-      {value:'barchart', text:'Bar Chart'}, 
-      {value:'linechart', text:'Line Chart'}, 
-      {value:'histogram', text:'Histogram'}, 
-      {value:'radarchart', text:'Radar Chart'}
+      {value: ChartTypes.BarChart, text:'Bar Chart'}, 
+      {value:ChartTypes.Radar, text:'Radar'}
     ]
 
     const indicatorOptions = [
       {value:'1.', text:'1.'},
+      {value:'1.1.', text:'1.1.'},
+      {value:'1.2.', text:'1.2.'},
+      {value:'1.3.', text:'1.3.'},
       {value:'2.', text:'2.'},
       {value:'3.', text:'3.'},
       {value:'4.', text:'4.'},
@@ -130,13 +137,30 @@ class DataVizualiztion extends React.Component {
           </Menu.Item>
 
           <Menu.Item >
-            <Button fluid>Generate</Button>
+            <Button fluid onClick={this.generate}>Generate</Button>
           </Menu.Item>
 
         </Menu>
         
         <h1>Generated Chart</h1>
-        <Displaychart />
+        <Displaychart>
+          {
+            this.state.chartType === ChartTypes.BarChart?
+            <BarChartWrap
+            countries={this.state.countries}
+            year={this.state.year}
+            indicators={this.state.indicators}
+            />:
+            <RadarWrap
+            countries={this.state.countries}
+            year={this.state.year}
+            indicators={this.state.indicators}
+            height={500}
+            width={500}
+            padding={100}
+            />
+          }
+        </Displaychart>
       </PageWrap>
     )
   }
