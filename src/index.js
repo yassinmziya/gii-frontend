@@ -10,6 +10,7 @@ import {BrowserRouter, Route} from 'react-router-dom';
 
 import allReducers from './components/reducers';
 import Rankings from './components/Rankings';
+import DataVisualiztion from './components/DataVisualization';
 import TestBarChart from './TestBarChart';
 import Test from './Test';
 import './global.css';
@@ -23,6 +24,7 @@ ReactDOM.render(
         <BrowserRouter>
             <div>
                 <Route exact path='/' component={Rankings}/>
+                <Route exact path='/visualization' component={DataVisualiztion}/>
                 <Route exact path='/test' component={Test}/>
             </div>
         </BrowserRouter>
