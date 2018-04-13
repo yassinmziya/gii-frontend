@@ -6,7 +6,7 @@ import BarChart from './components/BarChartWrap';
 
 export default class Test extends React.Component {
     render() {
-        return <BarChart year={2017} countries = {['USA', 'TZA', 'AUS', 'FRA', 'GBR', 
+        return <BarChart year='2014-c' countries = {['USA', 'TZA', 'AUS', 'FRA', 'GBR', 
         /*'ABW',
         'AFG',
         'AGO',
@@ -18,7 +18,7 @@ export default class Test extends React.Component {
         'ARE',
         'ARG',
         'ARM',
-        'ASM',
+        'ASM',*/
         'ATF',
         'ATG',
         'AUT',
@@ -29,12 +29,11 @@ export default class Test extends React.Component {
         'BFA',
         'BGD',
         'BVT',
-        'CAF',
         'CAN',
         'CCK',
         'CHE',
         'CHL',
-        'CHN'*/
-    ]} indicators = {['5.1', '4.1', '3.1.1']}/>
+        'CHN'
+    ]} indicators = {['5.1', '4.1', '3.1.1','2','4.3']}/>
     }
 }
