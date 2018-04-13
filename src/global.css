@@ -23,5 +23,9 @@
 }
 
 .tick line {
-    display: none
+    display: none;
+}
+
+.page-body .nav li:hover {
+    color: #a3796b;
 }
