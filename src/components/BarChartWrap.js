@@ -99,7 +99,7 @@ export default class BarChartWrap extends React.Component {
                         if (this.props.indicators[i].length == 5) {
                             scorelst.push({x: this.state.records[n].ISO3, y: parseInt(this.state.records[n][this.props.indicators[i]+'score'])});
                         } else {
-                            scorelst.push({x: this.state.records[n].ISO3, y: parseInt(this.state.records[n][this.props.indicators[i]+'.score'])});
+                            scorelst.push({x: this.state.records[n].ISO3, y: parseInt(this.state.records[n][this.props.indicators[i]+'score'])});
                         }
                             
                     }
