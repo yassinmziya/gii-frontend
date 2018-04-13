@@ -14,10 +14,6 @@
     float: left;
 }
 
-rect {
-    fill: #000000;
-}
-
 .tick line {
     display: none
 }
