@@ -3,10 +3,11 @@ import React from 'react';
 import PageWrap from './components/PageWrap';
 import Rankings from './components/Rankings';
 import BarChart from './components/BarChartWrap';
+import Radar from './components/Radar';
 
 export default class Test extends React.Component {
     render() {
-        return <BarChart year='2014-c' countries = {['USA', 'TZA', 'AUS', 'FRA', 'GBR', 
+        return <BarChart year='2014-c' countries = {['USA', 'TZA', 'AUS', 'FRA', 
         /*'ABW',
         'AFG',
         'AGO',
@@ -18,7 +19,7 @@ export default class Test extends React.Component {
         'ARE',
         'ARG',
         'ARM',
-        'ASM',*/
+        'ASM',
         'ATF',
         'ATG',
         'AUT',
@@ -33,7 +34,7 @@ export default class Test extends React.Component {
         'CCK',
         'CHE',
         'CHL',
-        'CHN'
-    ]} indicators = {['5.1', '4.1', '3.1.1','2','4.3']}/>
+        'CHN'*/
+    ]} indicators = {['5.1', '4.1', '3.1.1']}/>
     }
 }

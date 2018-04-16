@@ -112,7 +112,6 @@ export default class BarChartWrap extends React.Component {
                     }
                     legend += '</ul>';
                 }
-
         return(
             <div>
                 <div style={{padding:'10px'}}>
