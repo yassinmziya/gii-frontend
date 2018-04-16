@@ -7,7 +7,7 @@ import Radar from './components/Radar';
 
 export default class Test extends React.Component {
     render() {
-        return <BarChart year='2014-c' countries = {['USA', 'TZA', 'AUS', 'FRA', 
+        return <BarChart year='2015' countries = {['USA', 'TZA', 'AUS'
         /*'ABW',
         'AFG',
         'AGO',
@@ -35,6 +35,6 @@ export default class Test extends React.Component {
         'CHE',
         'CHL',
         'CHN'*/
-    ]} indicators = {['5.1', '4.1', '3.1.1']}/>
+    ]} indicators = {['5.1.', '4.1.', null]}/>
     }
 }
