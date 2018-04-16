@@ -1,0 +1,51 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js install
+
+PATH: 
+  /Users/jingguo/.pyenv/plugins/pyenv-virtualenv/shims:/Users/jingguo/.pyenv/shims:HOME/.pyenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/opt/yarn-[version]/bin:/usr/local/bin
+
+Yarn version: 
+  1.5.1
+
+Node version: 
+  8.10.0
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  {
+    "name": "my-app",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+      "axios": "^0.18.0",
+      "d3": "^5.0.0",
+      "prop-types": "^15.6.1",
+      "react": "^16.2.0",
+      "react-d3-radar": "^0.2.6",
+      "react-dom": "^16.2.0",
+      "react-redux": "^5.0.7",
+      "react-scripts": "1.1.1",
+      "redux": "^3.7.2",
+      "redux-logger": "^3.0.6",
+      "redux-promise-middleware": "^5.0.0",
+      "redux-thunk": "^2.2.0",
+      "semantic-ui-react": "^0.79.1"
+    },
+    "scripts": {
+      "start": "react-scripts start",
+      "build": "react-scripts build",
+      "test": "react-scripts test --env=jsdom",
+      "eject": "react-scripts eject"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: ENOSYS: function not implemented, symlink '../../../acorn/bin/acorn' -> '/Volumes/GoogleDrive/My Drive/CS5150/new411/gii-frontend/node_modules/acorn-dynamic-import/node_modules/.bin/acorn'

@@ -14,6 +14,18 @@
     float: left;
 }
 
+.horizontal-bar-char rect {
+    fill: #000000;
+}
+
+.vertical-bar-char rect {
+    fill: #000000;
+}
+
 .tick line {
-    display: none
+    display: none;
+}
+
+.page-body .nav li:hover {
+    color: #a3796b;
 }
