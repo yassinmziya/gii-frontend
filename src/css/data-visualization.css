@@ -1,0 +1,29 @@
+.country_selection {
+  height: 150px;
+  align-items: center;
+  align-content: center;
+}
+
+.country_selection Select {
+  margin-top: 40px;
+}
+.country_selection Dropdown{
+  margin-top: 20px;
+}
+
+
+
+ #sidemenu {
+  margin: 0px;
+  margin-right: 100px;
+
+}
+
+.displayWindow {
+  height: auto;
+  width: 1000px;
+}
+
+.displayWindow svg {
+  margin: 0 auto;
+}

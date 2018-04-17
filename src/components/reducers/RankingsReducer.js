@@ -3,7 +3,7 @@ import ActionTypes from '../actions/ActionTypes'
 var init = {
     data: [],
     indicator: 'GII',
-    year: '2013',
+    year: '2017',
 }
 
 const rankingsReducer = (state=init, action) => {
