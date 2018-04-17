@@ -10,6 +10,7 @@ class Menubutton extends React.Component {
 		super(props);
 		this.state = {
 			sidebarStyle: {
+				display: 'none',
 				position: 'absolute',
 				left: -256,
 				top: 50,
@@ -27,6 +28,7 @@ class Menubutton extends React.Component {
 		if (this.state.baropen == false) {
 			this.setState((prevState) => (
 			{sidebarStyle: {
+				display: 'block',
 				position: 'absolute',
 				left: 0,
 				top: 50,
@@ -39,6 +41,7 @@ class Menubutton extends React.Component {
 		if (this.state.baropen == true) {
 			this.setState((prevState) => (
 			{sidebarStyle: {
+				display: 'none',
 				position: 'absolute',
 				left: -256,
 				top: 50,
