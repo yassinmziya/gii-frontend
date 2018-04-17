@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import PageWrap from './PageWrap';
 import Displaychart from '../components/DisplayChart';
 import axios from 'axios';
-import { Button, Dropdown, Input, Label, Menu, Checkbox, Select, Form } from 'semantic-ui-react';
+import { Button, Dropdown, Input, Label, Menu, Checkbox, Select, Form, Segment } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -18,11 +18,10 @@ class DataVizualiztion extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      chartType: ChartTypes.BarChart,
-      year:"2017",
-      countries: ['SWE','USA'],
-      indicators: ['1.', '2.', '3.']
-
+      chartType: null,
+      year: null,
+      countries: [],
+      indicators: [],
     };
   }
 
@@ -30,42 +29,41 @@ class DataVizualiztion extends React.Component {
     this.setState({
       [data.id]:data.value
     })
-    console.log(this.state)
+    //console.log(this.state)
   }
 
-  init = () => {
+  componentDidMount = () => {
     this.props.getCountries()
   }
 
-
-  componentDidMount = () => {
-    this.init()
-  }
-
   generate = () => {
+    //console.log(this.state)
     var visual;
-    var props = {
-      year: this.state.year,
-      countries: this.state.countries,
-      indicators: this.state.indicators
-    }
-    
+
     switch (this.state.chartType) {
       case ChartTypes.BarChart:
-          visual = <BarChartWrap />
+        visual = <BarChartWrap
+          year = {this.state.year}
+          countries = {this.state.countries}
+          indicators = {this.state.indicators}
+        />
         break;
-        case ChartTypes.Radar:
-          visual = <RadarWrap />
-        break;
-        default:
-          <h1 style={{color:'red'}}>Error</h1>
+      case ChartTypes.Radar:
+        visual = <RadarWrap 
+          year = {this.state.year}
+          countries = {this.state.countries}
+          indicators = {this.state.indicators}
+          padding = {100}
+          height = {700}
+          width = {700}
+        />
         break;
     }
-
+    return visual
   }
 
-  render() {
 
+  render() {
     const yearOptions = [
       //{value:'2013', text:'2013'},
       {value:'2014-c', text:'2014-c'},
@@ -93,6 +91,8 @@ class DataVizualiztion extends React.Component {
       {value:'7.', text:'7.'}
     ]
     
+    var queryComplete = this.state.chartType && this.state.year && this.state.countries.length !== 0 && this.state.indicators.length !== 0;
+
     
     return(
       <PageWrap>
@@ -145,21 +145,9 @@ class DataVizualiztion extends React.Component {
         <h1>Generated Chart</h1>
         <Displaychart>
           {
-            this.state.chartType === ChartTypes.BarChart?
-            <BarChartWrap
-            countries={this.state.countries}
-            year={this.state.year}
-            indicators={this.state.indicators}
-            />:
-            <RadarWrap
-            countries={this.state.countries}
-            year={this.state.year}
-            indicators={this.state.indicators}
-            height={700}
-            width={700}
-            padding={100}
-            />
-          }
+            this.state.indicators
+          } 
+          {queryComplete?this.generate():<Segment inverted color='blue' secondary>Select parameters and click/tap generate</Segment>}
         </Displaychart>
       </PageWrap>
     )

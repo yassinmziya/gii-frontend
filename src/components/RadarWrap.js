@@ -38,7 +38,6 @@ export default class RadarWrap extends React.Component {
     componentDidUpdate = () => {
         var paths = document.getElementsByTagName('path');
         var colors = Array.from(paths).map(x => document.defaultView.getComputedStyle(x).stroke)
-
     }
 
     render() {
