@@ -26,11 +26,15 @@ class Sample2 extends React.Component {
 		});
 	}
 	
+	goBack = () => {
+        this.props.history.goBack()
+    }
+	
 	render() {
 		
 		return (
 			<div className="EntrancePage">
-				<Head_bar callbackFromEntrance={this.flagClick}/>
+				<Head_bar callbackFromEntrance={this.flagClick} goBack={this.goBack}/>
 				<Worldmap center={this.state.center}/>
 			</div>
 		);

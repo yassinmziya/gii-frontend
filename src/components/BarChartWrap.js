@@ -41,8 +41,21 @@ export default class BarChartWrap extends React.Component {
     }
 
     componentDidMount = () => {
-        console.log(this.getData())
+        this.getData()
         this.getVariables()
+    }
+
+    componentWillReceiveProps = (nextProps, nextState) => {
+        console.log('cur',this.props)
+        console.log('nxt', nextProps)
+        var update = nextProps.year !== this.props.year 
+            || nextProps.indicators.length !== this.props.indicators.length
+            || nextProps.countries.length !== this.props.countries.length
+        console.log(update)
+        if(update) {
+            this.getData()
+            this.getVariables()
+        }
     }
 
     tooltipBarChart = function(x, y) {
@@ -54,17 +67,9 @@ export default class BarChartWrap extends React.Component {
     }
 
     labelAccessor = function(stack) { return stack.customLabel };
-
-    ComponentDidUpdate = () => {
-        var paths = document.getElementsByTagName('path');
-        var colors = Array.from(paths).map(x => document.defaultView.getComputedStyle(x).stroke)
-        console.log(colors)
-        console.log(document.getElementsByClassName("bar"))
-    }
     
     toggleGroup = () => {
-        this.setState({groupbyindicator: !this.state.groupbyindicator});
-        
+        this.setState({groupbyindicator: !this.state.groupbyindicator});    
     }
 
     render() {
@@ -130,8 +135,9 @@ export default class BarChartWrap extends React.Component {
                 groupedBars
                 axes
                 data={data}
-                width={1000}
-                height={500}
+                width={this.props.width?this.props.width:1000}
+                height={this.props.height?this.props.height:500}
+                padding={this.props.padding?this.props.padding:0}
                 margin={{top: 10, bottom: 50, left: 50, right: 10}}
                 tooltipHtml={this.tooltip}
                 xAxis={{label: xlabel}}
@@ -152,4 +158,7 @@ BarChartWrap.propTypes = {
     year : PropTypes.string.isRequired,
     countries : PropTypes.arrayOf(PropTypes.string).isRequired,
     indicators : PropTypes.arrayOf(PropTypes.string).isRequired,
+    height: PropTypes.number,
+    width: PropTypes.number,
+    padding: PropTypes.number,
 }

@@ -1,5 +1,4 @@
 import ActionTypes from '../actions/ActionTypes';
-import ChartTypes from '../common/ChartTypes';
 
 var init = {
     year: '2017',

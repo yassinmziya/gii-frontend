@@ -42,7 +42,7 @@ export default class RadarWrap extends React.Component {
         var update = nextProps.year !== this.props.year 
             || nextProps.indicators.length !== this.props.indicators.length
             || nextProps.countries.length !== this.props.countries.length
-
+        console.log(update)
         if(update) {
             this.init()
         }
@@ -91,22 +91,10 @@ export default class RadarWrap extends React.Component {
 }
 
 RadarWrap.propTypes = {
-    width: PropTypes.number,
-    height: PropTypes.number,
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
     padding: PropTypes.number,
-    data: PropTypes.shape(
-        {
-            countries: PropTypes.arrayOf(PropTypes.string),
-            indicators: PropTypes.arrayOf(PropTypes.string),
-            year: PropTypes.arrayOf(PropTypes.string)
-        }
-    )
+    countries: PropTypes.arrayOf(PropTypes.string).isRequired,
+    indicators: PropTypes.arrayOf(PropTypes.string).isRequired,
+    year: PropTypes.arrayOf(PropTypes.string).isRequired
 }
-
-/*<RadarWrap
-    width={12}
-    data={{
-        countries:["USA", "TZA", "AUS"],
-        indicators:["4.1.1", "4.1."]
-    }}
-/>*/

@@ -1,18 +1,17 @@
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom';
+import React from 'react'
 import PageWrap from './PageWrap';
-import Displaychart from '../components/DisplayChart';
-import axios from 'axios';
-import { Button, Dropdown, Input, Label, Menu, Checkbox, Select, Form, Segment } from 'semantic-ui-react';
+
+import { Button, Dropdown, Menu, Select, Segment } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import actions from './actions';
-import ActionTypes from './actions/ActionTypes';
 import ChartTypes from './common/ChartTypes';
 import BarChartWrap from './BarChartWrap';
 import RadarWrap from './RadarWrap';
+import Displaychart from '../components/DisplayChart';
 import "../css/data-visualization.css";
+
 
 class DataVizualiztion extends React.Component {
   constructor(props) {
@@ -46,6 +45,9 @@ class DataVizualiztion extends React.Component {
           year = {this.state.year}
           countries = {this.state.countries}
           indicators = {this.state.indicators}
+          padding = {100}
+          height = {700}
+          width = {850}
         />
         break;
       case ChartTypes.Radar:
@@ -107,7 +109,6 @@ class DataVizualiztion extends React.Component {
           <Menu.Item className="one_selection">
             <h3>Select a Country:</h3>
             <Dropdown 
-              onChange={this.handleChange}
               id="countries"
               placeholder='Select your country' 
               multiple 
@@ -126,7 +127,6 @@ class DataVizualiztion extends React.Component {
           <Menu.Item className="one_selection">
             <h3>Select an Indicator</h3>
             <Dropdown 
-              onChange={this.handleChange}
               id="indicators"
               placeholder='Select your country' 
               multiple 
@@ -137,16 +137,13 @@ class DataVizualiztion extends React.Component {
           </Menu.Item>
 
           <Menu.Item >
-            <Button fluid onClick={this.generate}>Generate</Button>
+            <Button fluid onClick={this.generate} basic color='brown'>Generate</Button>
           </Menu.Item>
 
         </Menu>
         
         <h1>Generated Chart</h1>
         <Displaychart>
-          {
-            this.state.indicators
-          } 
           {queryComplete?this.generate():<Segment inverted color='blue' secondary>Select parameters and click/tap generate</Segment>}
         </Displaychart>
       </PageWrap>

@@ -11,7 +11,6 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import allReducers from './components/reducers';
 import Rankings from './components/Rankings';
 import DataVisualiztion from './components/DataVisualization';
-import TestBarChart from './TestBarChart';
 import WorldMap from './components/WorldMap/App';
 import Test from './Test';
 import './global.css';

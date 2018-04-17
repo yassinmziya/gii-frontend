@@ -1,5 +1,6 @@
 import React from 'react';
 import Menubutton from '../buttons/menubutton.js';
+import {Button} from 'semantic-ui-react';
 /**
 The headbar component, contains menubutton as its
 subcomponent.
@@ -44,6 +45,14 @@ class Head_bar extends React.Component {
 						fontStyle:'italic', 
 						margin:'auto'}}>
 					Global Innovation Index
+				</div>
+				<div 
+					style={{
+						height:'100%',
+						padding:'7px',
+					}}	
+				>
+					<Button onClick={this.props.goBack} circular basic inverted icon="arrow left"/>
 				</div>
 			</div>
 		)
