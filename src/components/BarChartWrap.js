@@ -29,7 +29,10 @@ export default class BarChartWrap extends React.Component {
     }
 
     getVariables = () => {
-        Axios.post(`http://localhost:3001/api/v1/categories/${this.props.year}`, this.props.indicators). then((res) => {
+        var ind = this.props.indicators.filter((x) => {
+            return (x != null);
+        })
+        Axios.post(`http://localhost:3001/api/v1/categories/${this.props.year}`, ind). then((res) => {
             console.log(res.data)
             this.setState({
                 variables : res.data
@@ -67,7 +70,11 @@ export default class BarChartWrap extends React.Component {
     render() {
         if(this.state.variables.length === 0) return null;
         if(this.state.records.length === 0) return null;
-        const colors = ['RGB(31,119,180)','RGB(179,199,229)','RGB(239,133,54)','RGB(245,189,130)','RGB(81,157,62)','RGB(168,220,147)','RGB(197,57,50)','RGB(241,157,153)','RGB(141,107,184)','RGB(193,177,210)','RGB(133,88,78)','RGB(190,157,150)','RGB(213,126,190)','RGB(237,185,209)','RGB(127,127,127)','RGB(199,199,199)','RGB(188,188,69)','RGB(219,218,150)','RGB(88,188,204)','RGB(170,117,227)','RGB(58,119,175)']
+        const colors = ['RGB(31,119,180)','RGB(179,199,229)','RGB(239,133,54)','RGB(245,189,130)','RGB(81,157,62)','RGB(168,220,147)','RGB(197,57,50)','RGB(241,157,153)','RGB(141,107,184)','RGB(193,177,210)','RGB(133,88,78)','RGB(190,157,150)','RGB(213,126,190)','RGB(237,185,209)','RGB(127,127,127)','RGB(199,199,199)','RGB(188,188,69)','RGB(219,218,150)','RGB(88,188,204)','RGB(170,117,227)','RGB(58,119,175)'];
+        var ind = this.props.indicators.filter((x) => {
+            return (x != null);
+        })
+        console.log(ind);
 
         if (this.state.groupbyindicator) {
             var xlabel = 'Indicator';
@@ -75,10 +82,10 @@ export default class BarChartWrap extends React.Component {
             for (var i=0; i < this.state.records.length; i++) {
                 var scorelst = [];
                 for (var n=0; n < this.state.variables.length; n++){
-                    if (this.props.indicators[n].length == 5) {
-                        scorelst.push({x: this.state.variables[n], y: parseInt(this.state.records[i][this.props.indicators[n]+'score'])});
+                    if (ind[n].length == 5) {
+                        scorelst.push({x: this.state.variables[n], y: parseInt(this.state.records[i][ind[n]+'score'])});
                     } else {
-                        scorelst.push({x: this.state.variables[n], y: parseInt(this.state.records[i][this.props.indicators[n]+'score'])});
+                        scorelst.push({x: this.state.variables[n], y: parseInt(this.state.records[i][ind[n]+'score'])});
                     }
                     
                 }
@@ -97,7 +104,7 @@ export default class BarChartWrap extends React.Component {
                     var scorelst = [];
                     for (var n=0; n < this.state.records.length; n++){
                         if (this.props.indicators[i].length == 5) {
-                            scorelst.push({x: this.state.records[n].ISO3, y: parseInt(this.state.records[n][this.props.indicators[i]+'score'])});
+                            scorelst.push({x: this.state.records[n].ISO3, y: parseInt(this.state.records[n][ind[i]+'score'])});
                         } else {
                             scorelst.push({x: this.state.records[n].ISO3, y: parseInt(this.state.records[n][this.props.indicators[i]+'score'])});
                         }

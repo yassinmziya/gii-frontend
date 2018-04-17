@@ -98,13 +98,13 @@ class DataVizualiztion extends React.Component {
       <PageWrap>
         <Menu id="sidemenu" vertical style={{margin:0, width:250, marginRight:20, marginLeft:20}} >
 
-          <Menu.Item class="one_selection">
+          <Menu.Item className="one_selection">
             <h3>Select a chart</h3>
             <Select id="chartType" placeholder='Select a chart' scrolling options={chartOptions} onChange={this.handleChange} >
             </Select>
           </Menu.Item>
 
-          <Menu.Item class="one_selection">
+          <Menu.Item className="one_selection">
             <h3>Select a Country:</h3>
             <Dropdown 
               onChange={this.handleChange}
@@ -117,13 +117,13 @@ class DataVizualiztion extends React.Component {
             />
           </Menu.Item>
 
-          <Menu.Item class="one_selection">
+          <Menu.Item className="one_selection">
             <h3>Select a year</h3>
             <Select id="year" placeholder='Select a year' scrolling options={yearOptions} onChange={this.handleChange}>
             </Select>
           </Menu.Item>
 
-          <Menu.Item class="one_selection">
+          <Menu.Item className="one_selection">
             <h3>Select an Indicator</h3>
             <Dropdown 
               onChange={this.handleChange}

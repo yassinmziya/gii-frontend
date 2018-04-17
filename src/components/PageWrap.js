@@ -33,7 +33,7 @@ export default class PageWrap extends React.Component {
                                     </Link>
 
                                     <li>/</li>
-                                    <li> IN-DEPTH ECONOMY REPORTS</li>
+                                    <Link to="/reports"><li> IN-DEPTH ECONOMY REPORTS</li></Link>
                                     <li>/</li>
                                     <Link to="/visualization">
                                     <li>COMPARE TWO ECONOMIES</li>

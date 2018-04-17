@@ -14,6 +14,7 @@ export default class RadarWrap extends React.Component {
 
     }
 
+
     init = () => {
         axios.all([
             axios.get(`http://localhost:3001/api/v1/data/${this.props.year}`),
@@ -35,9 +36,16 @@ export default class RadarWrap extends React.Component {
         this.init()
     }
 
-    componentDidUpdate = () => {
-        var paths = document.getElementsByTagName('path');
-        var colors = Array.from(paths).map(x => document.defaultView.getComputedStyle(x).stroke)
+    componentWillReceiveProps = (nextProps, nextState) => {
+        console.log('cur',this.props)
+        console.log('nxt', nextProps)
+        var update = nextProps.year !== this.props.year 
+            || nextProps.indicators.length !== this.props.indicators.length
+            || nextProps.countries.length !== this.props.countries.length
+
+        if(update) {
+            this.init()
+        }
     }
 
     render() {

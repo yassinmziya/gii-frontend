@@ -2,6 +2,7 @@ import React from 'react';
 
 import PageWrap from './components/PageWrap';
 import Rankings from './components/Rankings';
+import WorldMap from './components/WorldMap/App';
 import DataVizualization from './components/DataVisualization';
 
 import BarChart from './components/BarChartWrap';
@@ -28,6 +29,10 @@ export default class Test extends React.Component {
                     indicators={['1.','2.','3.','4.','5.','6.']}
                     year={'2015'}
                 />
+                <br/>
+                <br/>
+                <br/>
+                <br/>
             </div>
         )
     }

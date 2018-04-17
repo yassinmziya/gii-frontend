@@ -12,6 +12,7 @@ import allReducers from './components/reducers';
 import Rankings from './components/Rankings';
 import DataVisualiztion from './components/DataVisualization';
 import TestBarChart from './TestBarChart';
+import WorldMap from './components/WorldMap/App';
 import Test from './Test';
 import './global.css';
 import './index.css';
@@ -26,6 +27,7 @@ ReactDOM.render(
                 <Route exact path='/' component={Rankings}/>
                 <Route exact path='/visualization' component={DataVisualiztion}/>
                 <Route exact path='/test' component={Test}/>
+                <Route exact parhr='/reports' component={WorldMap}/>
             </div>
         </BrowserRouter>
     </Provider>, document.getElementById('root'));
