@@ -18,13 +18,14 @@ const wrapperStyles = {
 }
 
 var topofile = require('./topojson_maps/world-50m.json');
-
-var csvfile = require("../country-profile/country_coordinates.csv");
+var csvfile1 = require("../country-profile/country_coordinates.csv");
 var countries = [];
-d3.csv(csvfile, function(data) {
+
+d3.csv(csvfile1, function(data) {
 	data.forEach(function(d) {
 		d.latitude = +d.latitude;
 		d.longitude = +d.longitude;
+		d.landarea = +d.landarea;
 		countries.push(d);
 	});
 });
@@ -78,9 +79,11 @@ class AnimatedMap extends React.Component {
 		for (var i = 0; i < countries.length; i++) {
 			if (countries[i]["name"] == c) {
 				console.log(countries[i]);
+				var scaleProp = 2*Math.sqrt(16376870.0/countries[i]["landarea"]);
+				if (c == "Morocco") scaleProp = 6;
 				this.setState({
 					center: [countries[i]["longitude"], countries[i]["latitude"]],
-					zoom: 3,
+					zoom: scaleProp,
 				})
 			}
 		}
