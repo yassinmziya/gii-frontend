@@ -47,7 +47,7 @@ class DataVizualiztion extends React.Component {
           indicators = {this.state.indicators}
           padding = {100}
           height = {700}
-          width = {850}
+          width = {880}
         />
         break;
       case ChartTypes.Radar:
@@ -135,11 +135,6 @@ class DataVizualiztion extends React.Component {
               onChange={this.handleChange}
             />
           </Menu.Item>
-
-          <Menu.Item >
-            <Button fluid onClick={this.generate} basic color='brown'>Generate</Button>
-          </Menu.Item>
-
         </Menu>
         
         <h1>Generated Chart</h1>
