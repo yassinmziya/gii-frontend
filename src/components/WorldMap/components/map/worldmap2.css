@@ -1,0 +1,37 @@
+.button {
+	background-color: #000000;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.ScaleUp {
+	background-color: #969696;
+	color: black;
+	border: 0px;
+	margin-right: 5px;
+}
+
+.ScaleUp:hover {
+	background-color: #CCF;
+	color: white;
+}
+
+.ScaleDown {
+	background-color: #969696;
+	color: black;
+	border: 0px;
+}
+
+.ScaleDown:hover{
+	background-color: #CCF;
+	color: white;
+}
