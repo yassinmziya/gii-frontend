@@ -1,7 +1,7 @@
 import React from 'react'
 import PageWrap from './PageWrap';
 
-import { Button, Dropdown, Menu, Select, Segment } from 'semantic-ui-react';
+import { Dropdown, Menu, Select, Segment } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -28,7 +28,6 @@ class DataVizualiztion extends React.Component {
     this.setState({
       [data.id]:data.value
     })
-    //console.log(this.state)
   }
 
   componentDidMount = () => {
@@ -36,7 +35,6 @@ class DataVizualiztion extends React.Component {
   }
 
   generate = () => {
-    //console.log(this.state)
     var visual;
 
     switch (this.state.chartType) {

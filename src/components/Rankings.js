@@ -1,6 +1,5 @@
 import React from 'react';
-import { Table, Accordion, Dropdown } from 'semantic-ui-react';
-import axios from 'axios';
+import { Table, Dropdown } from 'semantic-ui-react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
@@ -46,6 +45,10 @@ class Rankings extends React.Component {
         //console.log(year)
     }
 
+    handleIndicator = (e, {value}) => {
+        this.props.setIndicator(value)
+    }
+
     render() {
         var data = this.getRankedData()
         var yearDropdownOptions = [
@@ -58,6 +61,16 @@ class Rankings extends React.Component {
             { key: 2012, value: 2012, text: 2012},
             { key: 2011, value: 2011, text:2011}
         ]
+
+        var indicatorDropdownOptions = Object.keys(this.props.rankings.allIndicators);
+        indicatorDropdownOptions = indicatorDropdownOptions.map((indicator) => {
+            return {
+                key: indicator,
+                value: indicator,
+                text: indicator + "  " + this.props.rankings.allIndicators[indicator]
+            }
+        })
+        indicatorDropdownOptions = [{key: "GII", value: "GII", text: "Global Innovation Index"}, ...indicatorDropdownOptions]
 
         return (
             <PageWrap>
@@ -80,6 +93,7 @@ class Rankings extends React.Component {
                     </div>
                     <div>
                     <Dropdown defaultValue={2017} onChange={this.handleYear} placeholder='Select Year' fluid selection options={yearDropdownOptions}/>
+                    <Dropdown defaultValue={"GII"} onChange={this.handleIndicator} placeholder='Select Indicator' fluid selection options={indicatorDropdownOptions}/>
                     </div>
                     <Table basic='very'>
                         <Table.Header>
@@ -126,7 +140,8 @@ function mapStateToProps(state) {
 function matchDispatchToProps(dispatch) {
     return bindActionCreators({
         getData: actions.getData,
-        setYear: actions.setYear
+        setYear: actions.setYear,
+        setIndicator: actions.setIndicator
     }, dispatch);
 }
 

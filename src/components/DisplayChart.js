@@ -1,10 +1,6 @@
 import React from 'react';
 
 class Displaychart extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
 		var displayWindowStyle = {
 			// display: 'table',

@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Radar from 'react-d3-radar';
 import PropTypes from 'prop-types';
 import axios from 'axios';
