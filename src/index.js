@@ -26,7 +26,7 @@ ReactDOM.render(
                 <Route exact path='/' component={Rankings}/>
                 <Route exact path='/visualization' component={DataVisualiztion}/>
                 <Route exact path='/test' component={Test}/>
-                <Route exact parhr='/reports' component={WorldMap}/>
+                <Route exact path='/report' component={WorldMap}/>
             </div>
         </BrowserRouter>
     </Provider>, document.getElementById('root'));
