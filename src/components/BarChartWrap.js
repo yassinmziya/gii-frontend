@@ -127,7 +127,7 @@ export default class BarChartWrap extends React.Component {
                 <div style={{padding:'10px'}}>
                     <h1> BarChart Comparison </h1>
                 </div>
-            <div className = 'barChart' style={{float:'left'}}>
+            <div className = 'barChart' >
                 <BarChart
                 groupedBars
                 axes
@@ -143,11 +143,11 @@ export default class BarChartWrap extends React.Component {
                 yAxis={{label: "Score"}}
                 style={{float:'left'}}/>
             </div>
-                <div style={{float:'left', padding: '0px'}}>
+                {/*<div>
                     <Button class="ui toggle button" role="button" color='red' onClick = {this.toggleGroup}>Toggle Grouping</Button>
                     <h3 > Legend </h3>
                     <div dangerouslySetInnerHTML={{__html: legend}} />
-                </div>
+                </div>*/}
            </div>
         )
     }
