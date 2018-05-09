@@ -1,0 +1,7 @@
+id,name,score,color
+1, Institute, 2, #ab1234
+1., Institute, 3, #808080
+1.1, oh my ohmy,
+1.1., oh my ohmy, 0.5555, #808080
+1.1.1, name2, 3,#808080
+1.1.Ps, name3, 5,#2E2575

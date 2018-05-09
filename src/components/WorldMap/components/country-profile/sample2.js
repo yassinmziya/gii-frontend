@@ -1,6 +1,6 @@
 import React from "react";
 import Link from 'react-router-dom/Link';
-import Worldmap from '../map/worldmap.js';
+import Worldmap from '../map/worldmap2.js';
 import Head_bar from '../head-bar/Head_bar.js'
 /**
 This is the sample page for our entrance, it contains
@@ -26,15 +26,11 @@ class Sample2 extends React.Component {
 		});
 	}
 	
-	goBack = () => {
-        this.props.history.goBack()
-    }
-	
 	render() {
 		
 		return (
 			<div className="EntrancePage">
-				<Head_bar callbackFromEntrance={this.flagClick} goBack={this.goBack}/>
+				<Head_bar callbackFromEntrance={this.flagClick}/>
 				<Worldmap center={this.state.center}/>
 			</div>
 		);
