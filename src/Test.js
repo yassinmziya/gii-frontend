@@ -22,7 +22,7 @@ export default class Test extends React.Component {
             <div>
                 <Button circular icon='arrow left' basic color="brown" onClick={this.goBack}/>
                 <ProfilePage
-                year = '2017'
+                year = '2011'
                 iso = 'NZL'
                 />
                 

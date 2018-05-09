@@ -3,7 +3,8 @@ import Axios from 'axios';
 import {BarChart} from 'react-d3-components';
 import PropTypes from 'prop-types';
 
-import { Button, Dropdown, Menu, Select, Segment, Table, Dimmer, Loader, Image } from 'semantic-ui-react';
+import { Button, Dropdown, Menu, Select, Segment, Table, Dimmer, Loader, Image, Header} from 'semantic-ui-react';
+import { truncate } from 'fs';
 
 var prefix = "http://localhost:3001/api"
 
@@ -11,11 +12,12 @@ export default class RankingsChart extends React.Component {
 
     constructor(props) {
         super(props)
-        this.state = {records: [], years: [], indicators: [], error: false}
+        this.state = {records: [], years: this.props.years, indicator: this.props.indicator, indicators: [], error: false}
     }
 
     getData = () => {
-        var years = this.props.years.filter((x) => {return (x != null )})
+        //console.log('trace og')
+        var years = this.state.years
 
         var recordCallBacks = years.map((y) => {return Axios.get(prefix + `/v1/data/${y}`)})
         var indicatorCallBacks = years.map((y) => {return Axios.get(prefix + `/v1/categories/${y}`)})
@@ -24,22 +26,38 @@ export default class RankingsChart extends React.Component {
             Axios.all(indicatorCallBacks), 
             Axios.all(recordCallBacks)
         ]).then(Axios.spread((ind, res) => {
-                var indicators = ind.map((x) => {return x.data})
+                var indicators = ind.map((x) => {return Object.assign({GII: 'Global Innovation Index', Input: 'Innovation Input Sub-Index', Output: 'Innovation Output Sub-Index', Efficiency: 'Innovation Efficiency Ratio'}, x.data)})
                 var records = res.map((x) => {return x.data})
                 this.setState({records: records, years: years, indicators: indicators})
             }
         ))
+        //console.log(this.state.indicators)
     }
 
     componentDidMount = () => {
+        //console.log('trace 0')
         this.getData()
         //this.getVariables()
     }
 
-    /*componentWillReceiveProps = (nextProps, nextState) => {
+    componentDidUpdate = (prevProps, prevState, snapshot) => {
+        //console.log('trace 1')
+        var update = prevState.years.length !== this.state.years.length
+        //|| prevState.indicator !== this.state.years.length
+        if (update) {
+            this.getData()
+        }
+        //if (this.state.error) {
+        //    this.setState({indicator: 'GII', error: false})
+        //}
+        //this.getVariables()
+    }
+/*
+    componentWillReceiveProps = (nextProps, nextState) => {
         console.log('cur',this.props)
         console.log('nxt', nextProps)
-        var update = nextProps.year !== this.props.year
+        var update = nextState.years.length !== this.state.years.length
+        || nextState.indicator !== this.state.indicator
         console.log(update)
         if(update) {
             this.getData()
@@ -48,25 +66,19 @@ export default class RankingsChart extends React.Component {
     }*/
 
     dataByCountry = () => {
+        //console.log('trace 2')
         var dataByCountry = this.state.records[0].map((country) => {
-            return [country.ISO3, country.Economy, country[this.props.indicator+'rank'], country[this.props.indicator+'score']]})
+            return [country.ISO3, country.Economy, country[this.state.indicator+'rank'], country[this.state.indicator+'score']]})
         
-            var indicatorName = this.state.indicators[0][this.props.indicator] // fetch correct indicator name
+            var indicatorName = this.state.indicators[0][this.state.indicator] // fetch correct indicator name
         
             // [ISO3, Economy, Rank, SortScore, OtherYearScores...]
         for (var i = 1; i < this.state.records.length; i++){
 
             // fetch the correct indicator code pertaining to the old year and otherwise set error to true
             var oldCode = ""
-            var year = this.state.years[i] // fetch year pertaining to iteration of outter for loop
-            if (indicatorName === this.state.indicators[i][this.props.indicator]){
-                oldCode = this.props.indicator
-            } else {
-                for (var realCode in this.state.indicators[i]){
-                    if (this.state.indicators[i][realCode] === indicatorName) oldCode = realCode
-                }
-                this.setState({error: true})
-            }
+            if (indicatorName === this.state.indicators[i][this.state.indicator]){oldCode = this.state.indicator} 
+            else {for (var realCode in this.state.indicators[i]) {if (this.state.indicators[i][realCode] === indicatorName) oldCode = realCode}}
 
             for (var n = 0; n < dataByCountry.length; n++){
 
@@ -79,25 +91,26 @@ export default class RankingsChart extends React.Component {
     }
 
     handleChange = (e, data) => {
+        //console.log('trace 3');
+        if (data.value.length === 0){
+            this.setState(
+                {years: ['2017','2016','2015']}
+            )
+        } else {
             this.setState({
                 [data.id]:data.value
             })
-        //console.log(this.state)
-      }
+        }
+    }
 
     /*tooltip = function(x, y, y0, total) {
         return "Score: " + y.toString();
     }*/
 
     render() {
-        console.log(this.state.indicators)
-        if (this.state.error) {
-            return(
-                <Segment textAlign='center' as='h3'>
-                    The years you have selected do not both contain this indicator.
-                </Segment>
-            )
-        }
+        //console.log('trace 4')
+        //console.log(this.state.indicators)
+
         if ((this.state.records.length === 0 || this.state.years.length === 0)) {
             return (
                 <div>
@@ -110,11 +123,41 @@ export default class RankingsChart extends React.Component {
                         <Image src='/assets/images/wireframe/short-paragraph.png' />
                         <Image src='/assets/images/wireframe/short-paragraph.png' />
                     </Segment>
+                    <h3>Select a year</h3>
+            
                 </div>
                 )}
+
+        const yearOptions = [
+            {value:'2011', text:'2011'},
+            {value:'2012', text:'2012'},
+            //{value:'2013', text:'2013'},
+            {value:'2014-c', text:'2014-c'},
+            {value:'2014-p', text:'2014-p'},
+            {value:'2015', text:'2015'},
+            {value:'2016', text:'2016'},
+            {value:'2017', text:'2017'}
+            ];
+
+            //console.log(Object.keys(this.state.indicators[0]))
+
+            // [valid indicators for selected years]
+            
+            var indicatorOptions = Object.keys(this.state.indicators[0]).map((code) => {
+                var indicatorName = this.state.indicators[0][code]
+                // array of booleans denoting if an indicator is valid for its corresponding year in this.state.indicators
+                return {value: code, text: "(" + code + ") " + this.state.indicators[0][code]}
+            });
+
+        
+        //var indicatorOptions = indicatorOptions.filter((ind) => {
+        //    return ind.value !== ""
+        //})
+
         var dataByCountry = this.dataByCountry()
+        //console.log(dataByCountry)
         dataByCountry = dataByCountry.filter((c) => {return c[0] !== ""})
-        console.log(dataByCountry)
+        //console.log(dataByCountry)
         var yearlist = this.state.years
         //console.log(yearlist)
         var data = yearlist.map((year) => {
@@ -125,12 +168,21 @@ export default class RankingsChart extends React.Component {
                 values: dataByCountry.map((country) => {return {x: country[0], y: parseFloat(country[i+3], 10)}})
             })
         })
-        console.log(data)
+        
+        //console.log(dataByCountry)
 
         // nested maps above should return data in the correct format
         
         return(
             <div>
+            
+            <Segment textAlign='center' attached='top' >
+                <Header as='h1' >
+                Rankings
+                <Header sub></Header>
+                </Header>
+            </Segment>
+
             <div id='chart'>
                 <BarChart
                 groupedBars
@@ -142,7 +194,45 @@ export default class RankingsChart extends React.Component {
                 margin={{top: 10, bottom: 50, left: 50, right: 10}}
                 //tooltipHtml={this.tooltip}
                 yAxis={{label: "Score"}}/>
-           </div>
+            </div>
+
+            <Segment textAlign='left' attached='bottom' >
+                <p>Countries are sorted by rank in the chosen indicator for the leftmost input year. </p>
+                <p>* If every country has no data for one year, it is because the indicator was not used that year. </p>
+                <p>** If one country has no data for a year or multiple, it is because that data was not collected for the country. </p>
+            </Segment>
+            
+            <Segment textAlign='center' attached='top'>
+            <Header as='h3'>
+            Select your years
+            </Header>
+            </Segment>
+            <Dropdown
+            search
+            id="years"
+            multiple
+            selection
+            fluid
+            placeholder='2017, 2016, 2015'
+            options={yearOptions} 
+            onChange={this.handleChange}
+            />
+            
+            <Segment textAlign='center' attached='top' >
+            <Header as='h3'>
+            Select an indicator
+            </Header>
+            </Segment>
+            <Dropdown 
+            search
+            id="indicator"
+            selection
+            fluid
+            placeholder='GII'
+            options={indicatorOptions} 
+            onChange={this.handleChange}
+            />
+
            <Table >
            <Table.Header>
            <Table.Row>
