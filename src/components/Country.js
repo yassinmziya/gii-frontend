@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import actions from './actions';
 import '../css/country.css';
 import AnimatedMap from './WorldMap/components/map/worldmap2';
+import ProfilePage from './ProfilePage';
 
 class Country extends React.Component {
     
@@ -45,11 +46,12 @@ class Country extends React.Component {
     };
 
     render() {
+        if(!this.props.report.summary) return null;
         const summary = this.props.report.summary
-        
+        console.log(summary)
         const panes = [
-            { menuItem: 'Country Briefing', render: () => <Tab.Pane attached={false}>Hello...</Tab.Pane> },
-            { menuItem: 'Country Profile', render: () => <Tab.Pane attached={false}>World...</Tab.Pane> },
+            { menuItem: 'Country Profile', render: () => <Tab.Pane attached={false}><ProfilePage iso={summary.iso3} year={this.props.report.year}/></Tab.Pane> },
+            { menuItem: 'Country Briefing', render: () => <Tab.Pane attached={false}>World...</Tab.Pane> },
           ]
 
      
@@ -69,6 +71,19 @@ class Country extends React.Component {
                             </Grid.Column>
                         </Grid>
 
+                        <Table basic="very" celled textAlign="center">
+                            <Table.Row>
+                                <Table.Cell>GII rank</Table.Cell>
+                                <Table.Cell>Input rank</Table.Cell>
+                                <Table.Cell>Output rank</Table.Cell>
+                            </Table.Row>
+                            <Table.Row>
+                                <Table.Cell>{this.props.report.summary.GII.rank}</Table.Cell>
+                                <Table.Cell>{this.props.report.summary.input.rank}</Table.Cell>
+                                <Table.Cell>{this.props.report.summary.output.rank}</Table.Cell>
+                            </Table.Row>
+                        </Table>
+
                         <Grid className="rank" relaxed columns={2}>
                             <Grid.Column width={4}>
                                 <h1>{summary.incomeGroup.rank}</h1>
@@ -86,15 +101,6 @@ class Country extends React.Component {
                                 <p>{summary.economy} is ranked {summary.region.rank}th among {summary.region.total} {summary.region.name} countries</p>
                             </Grid.Column>
                         </Grid>
-
-                        <Table basic="very">
-                            <Table.Row>
-                                <Table.Cell></Table.Cell>
-                                <Table.Cell></Table.Cell>
-                                <Table.Cell></Table.Cell>
-                            </Table.Row>
-                            <Table.Row></Table.Row>
-                        </Table>
                     </div>
                     <div id="chevron">
                         <Button  

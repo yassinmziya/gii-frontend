@@ -17,6 +17,11 @@
     right: 100px;
     margin-top: -40vh;
     background-color: rgb(138, 139, 138);
+    font-color: white;
+}
+
+#summary * {
+    color: white;
 }
 
 .rank h1 {
