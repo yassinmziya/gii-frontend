@@ -36,7 +36,7 @@ export default class ProfilePage extends React.Component {
 
     isStrength = (rank) => {
         if (isNaN(rank)) return false
-        if (rank <= 3) return true
+        if (rank === 1) return true
         return false
     }
 

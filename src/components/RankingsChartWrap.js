@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 import { Button, Dropdown, Menu, Select, Segment, Table, Dimmer, Loader, Image, Header} from 'semantic-ui-react';
 import { truncate } from 'fs';
+import PageWrap from './PageWrap';
 
 var prefix = "http://localhost:3001/api"
 
@@ -12,7 +13,7 @@ export default class RankingsChart extends React.Component {
 
     constructor(props) {
         super(props)
-        this.state = {records: [], years: this.props.years, indicator: this.props.indicator, indicators: [], error: false}
+        this.state = {records: [], years: ['2017','2016','2015'], indicator: 'GII', indicators: [], error: false}
     }
 
     getData = () => {
@@ -114,6 +115,7 @@ export default class RankingsChart extends React.Component {
         if ((this.state.records.length === 0 || this.state.years.length === 0)) {
             return (
                 <div>
+                    <PageWrap>
                     <Segment>
                         <Dimmer active>
                             <Loader>Loading</Loader>
@@ -123,8 +125,7 @@ export default class RankingsChart extends React.Component {
                         <Image src='/assets/images/wireframe/short-paragraph.png' />
                         <Image src='/assets/images/wireframe/short-paragraph.png' />
                     </Segment>
-                    <h3>Select a year</h3>
-            
+                    </PageWrap>
                 </div>
                 )}
 
@@ -175,14 +176,15 @@ export default class RankingsChart extends React.Component {
         
         return(
             <div>
-            
+            <PageWrap>
             <Segment textAlign='center' attached='top' >
                 <Header as='h1' >
                 Rankings
                 <Header sub></Header>
                 </Header>
             </Segment>
-
+            
+            <Segment attached="top">
             <div id='chart'>
                 <BarChart
                 groupedBars
@@ -195,9 +197,10 @@ export default class RankingsChart extends React.Component {
                 //tooltipHtml={this.tooltip}
                 yAxis={{label: "Score"}}/>
             </div>
+            </Segment>
 
             <Segment textAlign='left' attached='bottom' >
-                <p>Countries are sorted by rank in the chosen indicator for the leftmost input year. </p>
+                <p>Countries are sorted by rank in the chosen indicator for the leftmost input year. The below table also shows data from the leftmost input year. </p>
                 <p>* If every country has no data for one year, it is because the indicator was not used that year. </p>
                 <p>** If one country has no data for a year or multiple, it is because that data was not collected for the country. </p>
             </Segment>
@@ -263,6 +266,7 @@ export default class RankingsChart extends React.Component {
                }
            </Table.Body>
        </Table>
+       </PageWrap>
        </div>
         )
     }

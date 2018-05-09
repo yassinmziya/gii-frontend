@@ -10,6 +10,7 @@ import {BrowserRouter, Route} from 'react-router-dom';
 
 import allReducers from './components/reducers';
 import Rankings from './components/Rankings';
+import RankingsChart from './components/RankingsChartWrap';
 import DataVisualiztion from './components/DataVisualization';
 import WorldMap from './components/WorldMap/App';
 import Test from './Test';
@@ -23,7 +24,7 @@ ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
             <div>
-                <Route exact path='/' component={Rankings}/>
+                <Route exact path='/' component={RankingsChart}/>
                 <Route exact path='/visualization' component={DataVisualiztion}/>
                 <Route exact path='/test' component={Test}/>
                 <Route exact parhr='/reports' component={WorldMap}/>
