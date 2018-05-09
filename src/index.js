@@ -34,9 +34,6 @@ ReactDOM.render(
                 <Route exact path='/visualization' component={DataVisualiztion}/>
                 <Route exact path='/test' component={Test}/>
 
-                <Route exact parhr='/reports' component={WorldMap}/>
-                <Route exact parhr='/profile' component={TreeProfile}/>
-
                 <Route exact path='/report' component={WorldMap}/>
                 <Route exact path='/report/:iso3' component={Country}/>
 
