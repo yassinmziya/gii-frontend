@@ -16,7 +16,7 @@ class Countrycontainer extends React.Component {
 	
 	render() {
 		return (
-			<div style={{overflowY: 'auto',height: 720,}}>
+			<div style={{overflowY: 'auto',height: '100%',}}>
 				<Country1 fullName='Albania'
 					img_src='http://flags.fmcdn.net/data/flags/w580/al.png'
 					coordinate={[20.1683, 41.1533]}
@@ -24,7 +24,7 @@ class Countrycontainer extends React.Component {
 				/>
 				<Country1 fullName='Algeria'
 					img_src='http://flags.fmcdn.net/data/flags/w580/dz.png'
-					coordinate={[28.0339, 1.6596]}
+					coordinate={[1.6596,28.0339 ]}
 					callbackFromCountryContainer={this.myCallback}
 				/>
 				<Country1 fullName='Argentina'

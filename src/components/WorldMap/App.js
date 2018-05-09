@@ -48,6 +48,7 @@ class App extends React.Component {
 	render() {
 		return (
 			<div className="Container1">
+				<Router>
 				<div>
 					<AnimatedSwitch
 					  atEnter={{
@@ -62,11 +63,12 @@ class App extends React.Component {
 					  mapStyles={styles => ({
 						  transform: `translateX(${styles.offset}%)`
 					  })}>
-						<Route exact path="/entrance" component={Sample2} />
+						<Route exact path="/" component={Sample2} />
 						<Route path="/sample1" component={Sample}/>
 					</AnimatedSwitch>
 					
 				</div>
+				</Router>
 			</div>
 		);
 	}

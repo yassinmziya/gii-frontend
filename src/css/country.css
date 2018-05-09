@@ -1,0 +1,53 @@
+#country {
+    background: #e9eaed;
+}
+
+#jumbotron {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+#summary {
+    padding: 20px;
+    height: 80vh;
+    width: 400px;
+    position: absolute;
+    top: 50%;
+    right: 100px;
+    margin-top: -40vh;
+    background-color: rgb(138, 139, 138);
+    font-color: white;
+}
+
+#summary * {
+    color: white;
+}
+
+.rank h1 {
+    /*float: left;*/
+    font-size: 7em;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-text-fill-color:  rgb(138, 139, 138);
+    -webkit-text-stroke: 2px rgb(255,255,255);
+}
+
+.rank p {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+#chevron {
+    display: inline;
+    position: absolute;
+    left: 50%;
+    margin-left:-62px;
+    bottom: 30px;
+}
+
+#content {
+    width: 1170px;
+    min-height: 2000px;
+    margin: 30px auto 20px auto;
+}

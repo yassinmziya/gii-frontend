@@ -25,6 +25,7 @@ class DataVizualiztion extends React.Component {
   }
 
   handleChange = (e, data) => {
+    if(data.id === 'year') this.props.getIndicators(data.value);
     this.setState({
       [data.id]:data.value
     })
@@ -33,6 +34,7 @@ class DataVizualiztion extends React.Component {
 
   componentDidMount = () => {
     this.props.getCountries()
+    this.props.getIndicators(this.props.visualization.year)
   }
 
   generate = () => {
@@ -47,7 +49,7 @@ class DataVizualiztion extends React.Component {
           indicators = {this.state.indicators}
           padding = {100}
           height = {700}
-          width = {850}
+          width = {880}
         />
         break;
       case ChartTypes.Radar:
@@ -80,18 +82,9 @@ class DataVizualiztion extends React.Component {
       {value:ChartTypes.Radar, text:'Radar'}
     ]
 
-    const indicatorOptions = [
-      {value:'1.', text:'1.'},
-      {value:'1.1.', text:'1.1.'},
-      {value:'1.2.', text:'1.2.'},
-      {value:'1.3.', text:'1.3.'},
-      {value:'2.', text:'2.'},
-      {value:'3.', text:'3.'},
-      {value:'4.', text:'4.'},
-      {value:'5.', text:'5.'},
-      {value:'6.', text:'6.'},
-      {value:'7.', text:'7.'}
-    ]
+    var indicatorOptions = Object.keys(this.props.visualization.indicators).map((key) => {
+      return {value: key, text: key + "     " + this.props.visualization.indicators[key]};
+    })
     
     var queryComplete = this.state.chartType && this.state.year && this.state.countries.length !== 0 && this.state.indicators.length !== 0;
 
@@ -135,11 +128,6 @@ class DataVizualiztion extends React.Component {
               onChange={this.handleChange}
             />
           </Menu.Item>
-
-          <Menu.Item >
-            <Button fluid onClick={this.generate} basic color='brown'>Generate</Button>
-          </Menu.Item>
-
         </Menu>
         
         <h1>Generated Chart</h1>
@@ -159,7 +147,8 @@ function mapStateToProps(state) {
 
 function matchDispatchToState(dispatch) {
   return bindActionCreators({
-    getCountries: actions.getCountries
+    getCountries: actions.getCountries,
+    getIndicators: actions.getIndicators
   }, dispatch)
 }
 
