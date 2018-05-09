@@ -180,11 +180,10 @@ export default class RankingsChart extends React.Component {
             <Segment textAlign='center' attached='top' >
                 <Header as='h1' >
                 Rankings
-                <Header sub></Header>
                 </Header>
             </Segment>
             
-            <Segment attached="top">
+            <Segment attached>
             <div id='chart'>
                 <BarChart
                 groupedBars
