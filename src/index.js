@@ -11,8 +11,9 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import allReducers from './components/reducers';
 import Rankings from './components/Rankings';
 import DataVisualiztion from './components/DataVisualization';
-import WorldMap from './components/WorldMap/App';
+import WorldMap from './components/WorldMap/components/country-profile/sample_profile';
 import Test from './Test';
+import Country from './components/Country';
 import './global.css';
 import './index.css';
 
@@ -26,7 +27,8 @@ ReactDOM.render(
                 <Route exact path='/' component={Rankings}/>
                 <Route exact path='/visualization' component={DataVisualiztion}/>
                 <Route exact path='/test' component={Test}/>
-                <Route exact parhr='/reports' component={WorldMap}/>
+                <Route exact path='/report' component={WorldMap}/>
+                <Route exact path='/report/:iso3' component={Country}/>
             </div>
         </BrowserRouter>
     </Provider>, document.getElementById('root'));

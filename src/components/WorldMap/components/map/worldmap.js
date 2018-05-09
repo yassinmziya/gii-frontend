@@ -9,6 +9,8 @@ import {
 } from 'react-simple-maps';
 import {Motion, spring} from 'react-motion';
 import Link from 'react-router-dom/Link';
+import {Tooltip, actions} from 'redux-tooltip';
+import {initStore} from './store';
 /**
 The worldmap component, which can be rotated and clicked. 
 */
@@ -18,6 +20,8 @@ const wrapperStyles = {
 	margin: '0 auto'
 };
 
+const {show, hide} = actions;
+
 var topofile = require('./topojson_maps/world-50m.json');
 var projectionconfig = {
 	scale: 300,
@@ -26,20 +30,20 @@ var projectionconfig = {
 var mapStyle = {
 	default: {
 		fill: '#6B8E23',
-		stroke: '#0D0000',
-		strokeWidth: 0.75,
+		stroke: 'transparent',
+		strokeWidth: 0,
 		outline: 'none',
 	},
 	hover: {
 		fill: '#FF4500',
-		stroke: '#0D0000',
-		strokeWidth: 0.75,
+		stroke: 'transparent',
+		strokeWidth: 0,
 		outline: 'none',
 	},
 	pressed: {
 		fill: '#ecefe1',
-		stroke: '#0D0000',
-		strokeWidth: 0.75,
+		stroke: 'transparent',
+		strokeWidth: 0,
 		outline: 'none',
 	}
 };
@@ -49,6 +53,20 @@ function mapClick(geography) {
 	console.log('Country: ', geography.id);
 }
 
+function handleMouseMove(geography, evt) {
+	const x = evt.clientX;
+	const y = evt.clientY + window.pageYOffset;
+	this.props.dispatch(
+		show({
+			origin: {x, y},
+			content: geography.properties.name,
+		})
+	);
+}
+
+function handleMouseLeave() {
+	this.props.dispatch(hide());
+}
 
 const Worldmap = ({center}) => (
 <div className='worldmap' style={wrapperStyles}>
@@ -81,6 +99,7 @@ const Worldmap = ({center}) => (
 									projection={projection}
 									style={mapStyle}
 									onClick={mapClick}
+									
 								/>
 							</Link>
 						))}
@@ -113,6 +132,7 @@ const Worldmap = ({center}) => (
 			</ComposableMap>
 		)}
 	</Motion>
+
 </div>
 )
 export default Worldmap;
