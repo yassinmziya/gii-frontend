@@ -14,7 +14,12 @@ import RankingsChart from './components/RankingsChartWrap';
 import DataVisualiztion from './components/DataVisualization';
 import WorldMap from './components/WorldMap/components/country-profile/sample_profile';
 import Test from './Test';
+
+import TreeProfile from './components/TreeProfile';
+
+
 import Country from './components/Country';
+
 import './global.css';
 import './index.css';
 
@@ -28,8 +33,13 @@ ReactDOM.render(
                 <Route exact path='/' component={RankingsChart}/>
                 <Route exact path='/visualization' component={DataVisualiztion}/>
                 <Route exact path='/test' component={Test}/>
+
+                <Route exact parhr='/reports' component={WorldMap}/>
+                <Route exact parhr='/profile' component={TreeProfile}/>
+
                 <Route exact path='/report' component={WorldMap}/>
                 <Route exact path='/report/:iso3' component={Country}/>
+
             </div>
         </BrowserRouter>
     </Provider>, document.getElementById('root'));
