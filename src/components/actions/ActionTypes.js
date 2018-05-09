@@ -1,7 +1,11 @@
 const ActionTypes = {
     GET_DATA:'GET_DATA',
     SET_YEAR:'SET_YEAR',
-    GET_COUNTRIES:'GET_COUNTRIES'
+    GET_COUNTRIES:'GET_COUNTRIES',
+    SET_INDICATOR: 'SET_INDICATOR',
+    SUMMARY: 'SUMMARY',
+    GEOGRAPHY: 'GEOGRAPHY',
+    GET_INDICATORS: 'GET_INDICATORS'
 }
 
 export default Object.freeze(ActionTypes);
