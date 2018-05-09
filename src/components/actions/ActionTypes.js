@@ -4,7 +4,8 @@ const ActionTypes = {
     GET_COUNTRIES:'GET_COUNTRIES',
     SET_INDICATOR: 'SET_INDICATOR',
     SUMMARY: 'SUMMARY',
-    GEOGRAPHY: 'GEOGRAPHY'
+    GEOGRAPHY: 'GEOGRAPHY',
+    GET_INDICATORS: 'GET_INDICATORS'
 }
 
 export default Object.freeze(ActionTypes);
