@@ -1,7 +1,7 @@
 import React from "react";
 import Link from 'react-router-dom/Link';
 import Worldmap from '../map/worldmap.js';
-import Head_bar from '../head-bar/Head_bar.js'
+//import Head_bar from '../head-bar/Head_bar.js'
 /**
 This is the sample page for our entrance, it contains
 components: Worldmap, Head_bar. Adding components
@@ -30,7 +30,7 @@ class Sample2 extends React.Component {
 		
 		return (
 			<div className="EntrancePage">
-				<Head_bar callbackFromEntrance={this.flagClick}/>
+				
 				<Worldmap center={this.state.center}/>
 			</div>
 		);

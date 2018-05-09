@@ -15,7 +15,7 @@ import TestBarChart from './TestBarChart';
 import Test from './Test';
 import './global.css';
 import './index.css';
-import WorldMap from './components/WorldMap/components/country-profile/sample_profile';
+import Sample from './components/WorldMap/components/country-profile/sample_profile';
 
 var middleware = applyMiddleware(thunk, promiseMiddleware(), createLogger());
 var store = createStore(allReducers, middleware)
@@ -27,7 +27,7 @@ ReactDOM.render(
                 <Route exact path='/' component={Rankings}/>
                 <Route exact path='/visualization' component={DataVisualiztion}/>
                 <Route exact path='/test' component={Test}/>
-                <Route exact path='/report' component={WorldMap} />
+                <Route exact path='/report' component={Sample} />
             </div>
         </BrowserRouter>
     </Provider>, document.getElementById('root'));
