@@ -13,6 +13,8 @@ import Rankings from './components/Rankings';
 import DataVisualiztion from './components/DataVisualization';
 import WorldMap from './components/WorldMap/App';
 import Test from './Test';
+import TreeProfile from './components/TreeProfile';
+
 import './global.css';
 import './index.css';
 
@@ -27,6 +29,7 @@ ReactDOM.render(
                 <Route exact path='/visualization' component={DataVisualiztion}/>
                 <Route exact path='/test' component={Test}/>
                 <Route exact parhr='/reports' component={WorldMap}/>
+                <Route exact parhr='/profile' component={TreeProfile}/>
             </div>
         </BrowserRouter>
     </Provider>, document.getElementById('root'));
