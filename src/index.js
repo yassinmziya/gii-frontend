@@ -22,6 +22,7 @@ import Country from './components/Country';
 
 import './global.css';
 import './index.css';
+import Sample from './components/WorldMap/components/country-profile/sample_profile';
 
 var middleware = applyMiddleware(thunk, promiseMiddleware(), createLogger());
 var store = createStore(allReducers, middleware)
@@ -33,8 +34,7 @@ ReactDOM.render(
                 <Route exact path='/' component={RankingsChart}/>
                 <Route exact path='/visualization' component={DataVisualiztion}/>
                 <Route exact path='/test' component={Test}/>
-
-                <Route exact path='/report' component={WorldMap}/>
+                <Route exact path='/report' component={Sample} />
                 <Route exact path='/report/:iso3' component={Country}/>
 
             </div>

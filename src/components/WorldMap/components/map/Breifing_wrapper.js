@@ -54,5 +54,4 @@ class BriefWrapper extends React.Component {
 		);
 	}
 }
-
 export default BriefWrapper;

@@ -19,10 +19,8 @@ class ProfilePage extends React.Component {
 			  <h1>Country Profile Page</h1>
 			  <h1>Country Profile Page</h1>
 			  <h1>Country Profile Page</h1>
-			  <svg id="hello" style={{width: 960, height: 1080}} />
 			</div>
 			);
 	}
 }
-
 export default ProfilePage;

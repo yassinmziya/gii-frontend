@@ -5,10 +5,10 @@ class MapDisplayBox extends React.Component {
 		return(
             <div className="MapDisplayBox" style={{
                 float: "left",
-                paddingLeft: "2%",
-                width: "50%",
+                padding: "2%",
+                width: "100%",
                 height: "auto",
-                margin: "4% auto",
+                margin: "3% auto",
                 backgroundColor: "white",
             }}>{this.props.children}</div>
 		);

@@ -28,6 +28,7 @@ class Menubutton extends React.Component {
 		if (this.state.baropen == false) {
 			this.setState((prevState) => (
 			{sidebarStyle: {
+				display: 'block',
 				position: 'absolute',
 				left: 0,
 				top: 50,

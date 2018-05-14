@@ -30,7 +30,7 @@ class Sample2 extends React.Component {
 		
 		return (
 			<div className="EntrancePage">
-				<Head_bar callbackFromEntrance={this.flagClick}/>
+				
 				<Worldmap center={this.state.center}/>
 			</div>
 		);

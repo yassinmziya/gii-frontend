@@ -7,7 +7,6 @@ import ContextDisplayBox from "../map/ContextDisplayBox";
 import NewChart from "../map/newChart";
 import ProfilePage from "../map/ProfilePage";
 import {Link, animatedScroll as scroll, scrollSpy, scroller} from "react-scroll";
-
 import PageWrap from '../../../PageWrap';
 //import "../map/ScrollDownButton.css"
 /**
@@ -52,43 +51,11 @@ class Sample extends React.Component {
 	
 	    return (
 			<PageWrap>
-			  <NewChart />
 			  <div className="content" style={{width: "100%", height: "100%"}}>
 			  <MapDisplayBox>
-			  	
 		        <AnimatedMap />
 		      </MapDisplayBox>
-		      <ContextDisplayBox>
-		      	<div className="rankNumber" id="hola0" style={{
-                    width: "50%",
-                    height: 100,
-                    float: "left",
-                    marginLeft: "5%",
-                    marginTop: "2%",
-		        }}>
-		      	</div>
-				<div className="countryName" id="hola1" style={{
-					width: "80%",
-					height: 100,
-					position: "relative",
-					float: "left",
-					marginLeft: "5%",
-					marginTop: "5%",
-					zIndex: 30,
-				}}
-				>
-				</div>
-
-				<div className="breifing" id="hola2" style={{
-					width: "80%",
-					height: "auto",
-					position: "relative",
-					marginLeft: "5%",
-					float: "left",
-					zIndex: 30,
-				}}>
-				</div>
-		      </ContextDisplayBox>
+		      <div id="hola3" />
 		      <div className="ScrollDownButton" onClick={this.changePage}
 		              style={{
                           display: "inline",
@@ -97,9 +64,9 @@ class Sample extends React.Component {
                     <svg id="DownArrow">
                       <polygon class="arrow-bottom" points="37.6,64 0,36.1 5.1,32.8 37.6,56.8 70.4,32.8 75.5,36.1 "/>
                     </svg>
-		          </div>
+
+		        </div>
               </div>
-		      <ProfilePage />
 			</PageWrap>
 	    );
   }
