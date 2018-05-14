@@ -195,20 +195,22 @@ class AnimatedMap extends React.Component {
 		        }}>
 		      	</div>
 				<div className="countryName" id="hola1" style={{
-					width: 440,
-					height: 100,
+					width: 400,
+					height: "auto",
 					float: "left",
 					marginTop: 27,
 					marginLeft: 10,
+					marginBottom: 10,
 				}}
 				>
 				</div>
 
 				<div className="breifing" id="hola2" style={{
-					width: "90%",
+					width: 500,
 					height: "auto",
 					position: "relative",
 					float: "left",
+					display: "block",
 				}}>
 				</div>
 		      </ContextDisplayBox>, document.getElementById("hola3"));
