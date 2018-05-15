@@ -71,10 +71,33 @@ class AnimatedMap extends React.Component {
 			countryName: "",
 			rank: 0,
 		}
-		//this.handleZoomIn = this.handleZoomIn.bind(this)
-		//is.handleZoomOut = this.handleZoomOut.bind(this)
+		this.handleZoomIn = this.handleZoomIn.bind(this)
+		this.handleZoomOut = this.handleZoomOut.bind(this)
 		this.handleCountryClick = this.handleCountryClick.bind(this)
 		this.getRank = this.getRank.bind(this)
+		this.handleMouseEnter = this.handleMouseEnter.bind(this)
+	}
+
+	handleMouseEnter() {
+		document.body.style.overflowY = "hidden";
+	}
+	handleMouseLeave() {
+		document.body.style.overflowY = "auto";
+		console.log("eh");
+	}
+
+	handleMouseScroll(event) {
+		
+		if (event.deltaY<0) {
+			this.setState({
+				zoom: this.state.zoom * 2,
+			});
+		}
+		if (event.deltaY > 0) {
+			this.setState({
+				zoom: this.state.zoom / 2,
+			});
+		}
 	}
 
     getRank(countryISO3) {
@@ -105,24 +128,7 @@ class AnimatedMap extends React.Component {
 			            > {this.state.rank} </p>,
 			            document.getElementById("hola0")
 					);
-				/**
-					ReactDOM.render(
-						<div style={{
-							fontSize: 20,
-							fontFamily: "monospace",
-						}}>
-						<p> On innovation outputs, {this.state.countryName} improved significantly in innovation
-			                outputs, reaching its best rank in 2017
-			                (5th in the world).
-			            </p>
-			            <p> On innovation inputs, {this.state.countries} exhibits a
-			                decrease in its rank this year, dropping
-			                by 2 positions.
-			            </p>
-			            </div>,
-						document.getElementById("hola2")
-					);
-				*/
+
 				Axios.get(prefix + `/v1/data/summary/${this.state.countryISO3}/2016`).then((response) => {
 		    		const rank_last = response.data.GII.rank;
 		    		const rank_input_last = response.data.input.rank;
@@ -172,7 +178,7 @@ class AnimatedMap extends React.Component {
     	}
     }
 
-    /**
+    
 	handleZoomIn() {
 		this.setState({
 			zoom: this.state.zoom * 2,
@@ -183,7 +189,7 @@ class AnimatedMap extends React.Component {
 			zoom: this.state.zoom / 2,
 		})
 	}
-	*/
+	
 
 	handleCountryClick(geography) {
 		ReactDOM.render(
@@ -195,7 +201,7 @@ class AnimatedMap extends React.Component {
 		        }}>
 		      	</div>
 				<div className="countryName" id="hola1" style={{
-					width: 440,
+					width: 400,
 					height: 100,
 					float: "left",
 					marginTop: 27,
@@ -237,7 +243,11 @@ class AnimatedMap extends React.Component {
 
 	render() {
 		return (
-			<div className='wrapper' style={wrapperStyles}>
+			<div className='wrapper' style={wrapperStyles}
+				onMouseEnter={this.handleMouseEnter}
+				onMouseLeave={this.handleMouseLeave}
+				onWheel={(event) => this.handleMouseScroll(event)}
+			>
 				<Motion id="hola3" defaultStyle={{zoom: 1, x: 0, y: 0,}}
 					style={{
 						zoom: spring(this.state.zoom, {stiffness: 210, damping: 20}),
