@@ -4,12 +4,11 @@ class ContextDisplayBox extends React.Component {
 	render() {
 		return(
             <div className="ContextDisplayBox" style={{
-                float: "left",
-                paddingLeft: "2%",
-                width: "50%",
+                paddingLeft: "5%",
+                width: "100%",
                 height: 370,
-                margin: "0 auto",
                 backgroundColor: "white",
+                borderRadius: ".28571429rem .28571429rem .28571429rem .28571429rem",
             }}>{this.props.children}</div>
 		);
 	}

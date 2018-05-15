@@ -53,8 +53,14 @@ class Sample extends React.Component {
 			  <div className="content" style={{width: "100%", height: "100%"}}>
 			  <MapDisplayBox>
 		        <AnimatedMap />
+		        <div id="hola3" style={{
+		        	    width: "50%", 
+		        	    float: "left",
+		        	    opacity: 0,
+		        	    transition: "opacity 1s",
+		            }}/>
 		      </MapDisplayBox>
-		      <div id="hola3" />
+		      
 		      <div className="ScrollDownButton" onClick={this.changePage}
 		              style={{
                           display: "inline",

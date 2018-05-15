@@ -17,9 +17,12 @@ import ContextDisplayBox from "../map/ContextDisplayBox";
 
 var prefix = "http://localhost:3001/api";
 
-const wrapperStyles = {
+var wrapperStyles = {
+	float: "left",
 	width: "100%",
-	display: "table",
+	height: 580,
+	display: "inner-block",
+	transition: "width .25s",
 	
 }
 var topofile = require('./topojson_maps/world-50m.json');
@@ -70,6 +73,8 @@ class AnimatedMap extends React.Component {
 			countryISO3: "",
 			countryName: "",
 			rank: 0,
+			display_width1: "100%",
+			display_width2: "50%",
 		}
 		this.handleZoomIn = this.handleZoomIn.bind(this)
 		this.handleZoomOut = this.handleZoomOut.bind(this)
@@ -192,6 +197,9 @@ class AnimatedMap extends React.Component {
 	
 
 	handleCountryClick(geography) {
+		var box1 = document.getElementsByClassName("wrapper");
+		box1[0].style.width = "50%";
+		document.getElementById("hola3").style.opacity = 1;
 		ReactDOM.render(
 			<ContextDisplayBox>
 		      	<div className="rankNumber" id="hola0" style={{
@@ -201,11 +209,11 @@ class AnimatedMap extends React.Component {
 		        }}>
 		      	</div>
 				<div className="countryName" id="hola1" style={{
-					width: 400,
-					height: 100,
+					width: 370,
+					height: 130,
 					float: "left",
 					marginTop: 27,
-					marginLeft: 10,
+					marginLeft: 27,
 				}}
 				>
 				</div>
