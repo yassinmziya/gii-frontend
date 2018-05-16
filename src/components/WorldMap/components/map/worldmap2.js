@@ -75,6 +75,7 @@ class AnimatedMap extends React.Component {
 			rank: 0,
 			display_width1: "100%",
 			display_width2: "50%",
+			region: "",
 		}
 		this.handleZoomIn = this.handleZoomIn.bind(this)
 		this.handleZoomOut = this.handleZoomOut.bind(this)
@@ -115,25 +116,41 @@ class AnimatedMap extends React.Component {
 	    	Axios.get(prefix + `/v1/data/summary/${this.state.countryISO3}/2017`).then((response, prevState) => {
 	    		console.log(response);
 	    		const rank = response.data.GII.rank;
+	    		var region = response.data.region.name;
 	    		rank_input = response.data.input.rank;
 	    		rank_output = response.data.output.rank;
 	    		this.setState((prevState) => ({
 	    			rank: rank,
+	    			region: region,
 	    		}), () => {
 	    			console.log("rank", this.state.rank);
 	    			ReactDOM.render(
-	    				<h1 style={{fontSize: 36,}}> {this.state.countryName} is ranked {this.state.rank} in the GII 2017</h1>, 
-	    				document.getElementById('hola1'));
+	    				<h1 style={{fontSize: 36,}}> 
+	    					{this.state.countryName} is ranked {this.state.rank} in the GII 2017
+	    				</h1>, document.getElementById('hola1')
+	    			);
 	    			ReactDOM.render(
 			            <p style={{
 			                margin: "0 auto",
 			                fontSize: 100,
 			                fontFamily: "fantasy", 
 			            }}
-			            > {this.state.rank} </p>,
-			            document.getElementById("hola0")
-					);
-
+			            > {this.state.rank} </p>, document.getElementById("hola0")
+			        );
+			        ReactDOM.render(
+			        	<div style={{fontSize: 20, fontFamily: "monospace",}}>
+			        		<div className="listName" style={{float:"left", width:"fit-content", marginLeft: 20,}}>
+					        	<p><li>REGION</li></p>
+					        	<p><li>INPUT</li></p>
+					        	<p><li>OUTPUT</li></p>
+				        	</div>
+				        	<div className="listView" style={{float:"left", width:"auto", marginLeft: 20,}}>
+				        		<p>{this.state.region}</p>
+				        	</div>
+				        </div>, document.getElementById("hola2")
+			        	
+			        );
+			    /**
 				Axios.get(prefix + `/v1/data/summary/${this.state.countryISO3}/2016`).then((response) => {
 		    		const rank_last = response.data.GII.rank;
 		    		const rank_input_last = response.data.input.rank;
@@ -176,7 +193,7 @@ class AnimatedMap extends React.Component {
 							<div id="hola4" />
 							</div>, document.getElementById("hola4"));
 		    		}
-	    	});
+	    	});*/
 	    		});
 	    	});
 	    	
