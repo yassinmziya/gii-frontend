@@ -4,8 +4,15 @@ import axios from 'axios';
 import AnimatedMap from "../map/worldmap2";
 import BriefWrapper from "../map/Breifing_wrapper";
 import ContextDisplayBox from "../map/ContextDisplayBox";
+<<<<<<< HEAD
 import ProfilePage from "../map/ProfilePage";
 import {Link, animatedScroll as scroll, scrollSpy, scroller} from "react-scroll";
+=======
+import NewChart from "../map/newChart";
+import ProfilePage from "../map/ProfilePage";
+import {Link, animatedScroll as scroll, scrollSpy, scroller} from "react-scroll";
+
+>>>>>>> origin/jing0509
 import PageWrap from '../../../PageWrap';
 //import "../map/ScrollDownButton.css"
 /**
@@ -61,7 +68,6 @@ class Sample extends React.Component {
 		        	    marginLeft: 10,
 		            }}/>
 		      </MapDisplayBox>
-		      
 		      <div className="ScrollDownButton" onClick={this.changePage}
 		              style={{
                           display: "inline",

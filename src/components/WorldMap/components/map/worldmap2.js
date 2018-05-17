@@ -333,5 +333,4 @@ class AnimatedMap extends React.Component {
 		)
 	}
 }
-
 export default AnimatedMap

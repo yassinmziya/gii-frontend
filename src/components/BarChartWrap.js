@@ -41,30 +41,32 @@ export default class BarChartWrap extends React.Component {
     }
 
     componentDidMount = () => {
-        console.log(this.getData())
+        this.getData()
         this.getVariables()
     }
 
-    tooltipBarChart = function(x, y) {
-        return "x: " + x + " y: " + y;
-    };
+    componentWillReceiveProps = (nextProps, nextState) => {
+        console.log('cur',this.props)
+        console.log('nxt', nextProps)
+        var update = nextProps.year !== this.props.year 
+            || nextProps.indicators.length !== this.props.indicators.length
+            || nextProps.countries.length !== this.props.countries.length
+        console.log(update)
+        if(update) {
+            this.getData()
+            this.getVariables()
+        }
+    }
+
 
     tooltip = function(x, y0, y, total) {
         return "Score: " + y.toString();
     }
 
     labelAccessor = function(stack) { return stack.customLabel };
-
-    ComponentDidUpdate = () => {
-        var paths = document.getElementsByTagName('path');
-        var colors = Array.from(paths).map(x => document.defaultView.getComputedStyle(x).stroke)
-        console.log(colors)
-        console.log(document.getElementsByClassName("bar"))
-    }
     
     toggleGroup = () => {
-        this.setState({groupbyindicator: !this.state.groupbyindicator});
-        
+        this.setState({groupbyindicator: !this.state.groupbyindicator});    
     }
 
     render() {
@@ -81,7 +83,7 @@ export default class BarChartWrap extends React.Component {
             var data = [];
             for (var i=0; i < this.state.records.length; i++) {
                 var scorelst = [];
-                for (var n=0; n < this.state.variables.length; n++){
+                for (var n=0; n < ind.length; n++){
                     if (ind[n].length == 5) {
                         scorelst.push({x: this.state.variables[n], y: parseInt(this.state.records[i][ind[n]+'score'])});
                     } else {
@@ -106,7 +108,7 @@ export default class BarChartWrap extends React.Component {
                         if (this.props.indicators[i].length == 5) {
                             scorelst.push({x: this.state.records[n].ISO3, y: parseInt(this.state.records[n][ind[i]+'score'])});
                         } else {
-                            scorelst.push({x: this.state.records[n].ISO3, y: parseInt(this.state.records[n][ind[i]+'.score'])});
+                            scorelst.push({x: this.state.records[n].ISO3, y: parseInt(this.state.records[n][this.props.indicators[i]+'score'])});
                         }
                             
                     }
@@ -125,24 +127,27 @@ export default class BarChartWrap extends React.Component {
                 <div style={{padding:'10px'}}>
                     <h1> BarChart Comparison </h1>
                 </div>
-            <div className = 'barChart' style={{float:'left'}}>
+            <div className = 'barChart' >
                 <BarChart
                 groupedBars
                 axes
                 data={data}
-                width={1000}
-                height={500}
+                width={this.props.width?this.props.width:1000}
+                height={this.props.height?this.props.height:500}
+                padding={this.props.padding?this.props.padding:0}
                 margin={{top: 10, bottom: 50, left: 50, right: 10}}
                 tooltipHtml={this.tooltip}
+                tooltipMode={'fixed'}
+                tooltipOffset={{top: 5, left: 60}}
                 xAxis={{label: xlabel}}
                 yAxis={{label: "Score"}}
                 style={{float:'left'}}/>
             </div>
-                <div style={{float:'left', padding: '0px'}}>
+                {/*<div>
                     <Button class="ui toggle button" role="button" color='red' onClick = {this.toggleGroup}>Toggle Grouping</Button>
                     <h3 > Legend </h3>
                     <div dangerouslySetInnerHTML={{__html: legend}} />
-                </div>
+                </div>*/}
            </div>
         )
     }
@@ -152,4 +157,7 @@ BarChartWrap.propTypes = {
     year : PropTypes.string.isRequired,
     countries : PropTypes.arrayOf(PropTypes.string).isRequired,
     indicators : PropTypes.arrayOf(PropTypes.string).isRequired,
+    height: PropTypes.number,
+    width: PropTypes.number,
+    padding: PropTypes.number,
 }

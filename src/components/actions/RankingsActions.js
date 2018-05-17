@@ -4,20 +4,30 @@ import ActionTypes from './ActionTypes';
 const getData = (year) => {
     return {
         type: ActionTypes.GET_DATA,
-        payload: axios.get(`http://localhost:3001/api/v1/data/${year}`)
+        payload: axios.all([
+            axios.get(`http://localhost:3001/api/v1/data/${year}`),
+            axios.get(`http://localhost:3001/api/v1/categories/${year}`),
+        ])
     }
         
 }
 
 const setYear = (year) => {
-    console.log(year)
     return {
         type: ActionTypes.SET_YEAR,
         payload: year
     }
 }
 
+const setIndicator = (indicator) => {
+    return{
+        type: ActionTypes.SET_INDICATOR,
+        payload: indicator
+    }
+}
+
 export default {
     getData,
     setYear,
+    setIndicator,
 }

@@ -16,4 +16,5 @@ class ContextDisplayBox extends React.Component {
 		);
 	}
 }
+
 export default ContextDisplayBox;

@@ -1,12 +1,12 @@
 Here is what I thought about the App components hierachy:
 
-					<Router>
-					/      \
-			    <entrance page>  <country profile>
-			    /      /
-                   <Head bar>    <World map>
-                    /
-               <Menubutton>
+					<RouterRouterRouterRouterRouter>
+					/      \                   \
+			    <entrance page>  <country profile>     <data visual>
+			    /      /				    /        \
+                   <Head bar>    <World map>           <control panel>      <display>
+                    /                                                           \
+               <Menubutton>                                                  <charts>
                   /
                <Sidebar>
 		/

@@ -1,10 +1,10 @@
 import ActionTypes from '../actions/ActionTypes';
-import ChartTypes from '../common/ChartTypes';
 
 var init = {
     year: '2017',
     countryOpts: [],
-    chartType: ""
+    chartType: "",
+    indicators: {}
 }
 
 const visualiztionReducer = (state=init, action) => {
@@ -17,7 +17,14 @@ const visualiztionReducer = (state=init, action) => {
                 return { key: x.iso3, value: x.iso3, text: x.country }
             })
             break;
+
+        case ActionTypes.GET_INDICATORS+'_FULFILLED':
+            nextState.indicators = action.payload.data;
+            break;
+        default:
+            return nextState;
     }
+
     return nextState;
 }
 

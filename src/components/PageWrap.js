@@ -6,10 +6,6 @@ import {Link} from 'react-router-dom';
 import '../css/page-wrap.css';
 
 export default class PageWrap extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div className="page-wrap">
@@ -33,16 +29,21 @@ export default class PageWrap extends React.Component {
                                     </Link>
 
                                     <li>/</li>
+                                    
                                     <Link to="/report">
                                     <li> IN-DEPTH ECONOMY REPORTS</li>
                                     </Link>
+
                                     <li>/</li>
+
                                     <Link to="/visualization">
-                                    <li>COMPARE TWO ECONOMIES</li>
+                                        <li>COMPARE TWO ECONOMIES</li>
                                     </Link>
+
                                     <li>/</li>
+
                                     <Link to="/test">
-                                    <li>TEST RANGE</li>
+                                        <li>TEST RANGE</li>
                                     </Link>
                                 </ul>
                             </div>
@@ -52,6 +53,7 @@ export default class PageWrap extends React.Component {
                         this.props.children
                     }
                 </div>
+                <PageFooter/>
             </div>
         )
     };
