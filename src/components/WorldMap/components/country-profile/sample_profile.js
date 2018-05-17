@@ -54,10 +54,11 @@ class Sample extends React.Component {
 			  <MapDisplayBox>
 		        <AnimatedMap />
 		        <div id="hola3" style={{
-		        	    width: "50%", 
+		        	    width: "49%", 
 		        	    float: "left",
 		        	    opacity: 0,
 		        	    transition: "opacity 1s",
+		        	    marginLeft: 10,
 		            }}/>
 		      </MapDisplayBox>
 		      
@@ -67,7 +68,7 @@ class Sample extends React.Component {
                           marginLeft: "50%",
 		              }}>
                     <svg id="DownArrow">
-                      <polygon class="arrow-bottom" points="37.6,64 0,36.1 5.1,32.8 37.6,56.8 70.4,32.8 75.5,36.1 "/>
+                      <polygon className="arrow-bottom" points="37.6,64 0,36.1 5.1,32.8 37.6,56.8 70.4,32.8 75.5,36.1 "/>
                     </svg>
 		      </div>
               </div>
