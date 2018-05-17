@@ -4,7 +4,6 @@ import axios from 'axios';
 import AnimatedMap from "../map/worldmap2";
 import BriefWrapper from "../map/Breifing_wrapper";
 import ContextDisplayBox from "../map/ContextDisplayBox";
-import NewChart from "../map/newChart";
 import ProfilePage from "../map/ProfilePage";
 import {Link, animatedScroll as scroll, scrollSpy, scroller} from "react-scroll";
 import PageWrap from '../../../PageWrap';
@@ -54,18 +53,24 @@ class Sample extends React.Component {
 			  <div className="content" style={{width: "100%", height: "100%"}}>
 			  <MapDisplayBox>
 		        <AnimatedMap />
+		        <div id="hola3" style={{
+		        	    width: "49%", 
+		        	    float: "left",
+		        	    opacity: 0,
+		        	    transition: "opacity 1s",
+		        	    marginLeft: 10,
+		            }}/>
 		      </MapDisplayBox>
-		      <div id="hola3" />
+		      
 		      <div className="ScrollDownButton" onClick={this.changePage}
 		              style={{
                           display: "inline",
                           marginLeft: "50%",
 		              }}>
                     <svg id="DownArrow">
-                      <polygon class="arrow-bottom" points="37.6,64 0,36.1 5.1,32.8 37.6,56.8 70.4,32.8 75.5,36.1 "/>
+                      <polygon className="arrow-bottom" points="37.6,64 0,36.1 5.1,32.8 37.6,56.8 70.4,32.8 75.5,36.1 "/>
                     </svg>
-
-		        </div>
+		      </div>
               </div>
 			</PageWrap>
 	    );

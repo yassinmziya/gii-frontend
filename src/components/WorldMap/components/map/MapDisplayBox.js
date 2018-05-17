@@ -10,6 +10,7 @@ class MapDisplayBox extends React.Component {
                 height: "auto",
                 margin: "3% auto",
                 backgroundColor: "white",
+                borderRadius: ".28571429rem .28571429rem .28571429rem .28571429rem",
             }}>{this.props.children}</div>
 		);
 	}
