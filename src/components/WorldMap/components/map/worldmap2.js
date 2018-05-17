@@ -270,6 +270,7 @@ class AnimatedMap extends React.Component {
 		var c = geography["properties"]["name"];
 		const ISO3 = geography["id"];
 		console.log(c);
+		this.props.summarize(ISO3, '2017');
 		for (var i = 0; i < countries.length; i++) {
 			if (countries[i]["name"] == c) {
 				console.log(countries[i]);
