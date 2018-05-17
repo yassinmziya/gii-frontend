@@ -29,10 +29,11 @@ export default class PageWrap extends React.Component {
                                     </Link>
 
                                     <li>/</li>
-                                    
+
                                     <Link to="/report">
-                                    <li> IN-DEPTH ECONOMY REPORTS</li>
+                                        <li> IN-DEPTH ECONOMY REPORTS</li>
                                     </Link>
+
 
                                     <li>/</li>
 

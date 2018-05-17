@@ -172,7 +172,7 @@ class AnimatedMap extends React.Component {
 				        	<div className="listView" style={{width:"40%", marginLeft: 20,}}>
 				        		<p><svg style={{width: 300, height: 20.43}}>
 				        			    <rect x="0" y="4" style={{width: this.state.input_score*3, height: 22}}/>
-				        			    <text x={this.state.input_score*3+5} y="19" fill="white">{this.state.input_score}</text>
+				        			    <text x={this.state.input_score*3+5} y="19" fill="#f7f3f3">{this.state.input_score}</text>
 				        		   </svg>
 				        		</p>
 				        		<p><svg style={{width: 300, height: 22}}>
@@ -181,7 +181,7 @@ class AnimatedMap extends React.Component {
 				        		</p>
 				        		<p><svg style={{width: 300, height: 20.43}}>
 				        		        <rect x="0" y="4" style={{width: this.state.output_score*3, height: 22}}/>
-				        		        <text x={this.state.output_score*3+5} y="19" fill="white">{this.state.output_score}</text>
+				        		        <text x={this.state.output_score*3+5} y="19" fill="#f7f3f3">{this.state.output_score}</text>
 				        		    </svg>
 				        		</p>
 				        		<p><svg style={{width: 300, height: 20.43}}>
@@ -207,7 +207,7 @@ class AnimatedMap extends React.Component {
 			});
 	    	} 
 	    	else {
-	    		alert("This economy does not have GII data.");
+	    		alert("This economy, " + this.state.countryISO3 + " does not have GII data.");
 	    		document.getElementById("hola3").style.opacity = 0;
 	    		document.getElementsByClassName("wrapper")[0].style.width = "100%";
 				ReactDOM.render(
@@ -330,7 +330,7 @@ class AnimatedMap extends React.Component {
 					)}
 				</Motion>
 			</div>
-		)
+		);
 	}
 }
 export default AnimatedMap
