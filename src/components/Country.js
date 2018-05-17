@@ -7,6 +7,7 @@ import actions from './actions';
 import '../css/country.css';
 import AnimatedMap from './WorldMap/components/map/worldmap2';
 import ProfilePage from './ProfilePage';
+import TreeProfile from './TreeProfile';
 
 class Country extends React.Component {
     
@@ -51,6 +52,7 @@ class Country extends React.Component {
         console.log(summary)
         const panes = [
             { menuItem: 'Country Profile', render: () => <Tab.Pane attached={false}><ProfilePage iso={summary.iso3} year={this.props.report.year}/></Tab.Pane> },
+            { menuItem: 'Country Tree', render: () => <Tab.Pane attached={false}><TreeProfile iso={summary.iso3} year={this.props.report.year}/></Tab.Pane> },
             { menuItem: 'Country Briefing', render: () => <Tab.Pane attached={false}>World...</Tab.Pane> },
           ]
 

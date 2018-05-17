@@ -9,6 +9,7 @@ class BriefWrapper extends React.Component {
             right: 0,
             left: 0,
 	    }}>
+	      
 		  <div className="BrifNav" style={{
 		  	width: "100%",
 		  	height: "auto",
@@ -53,5 +54,4 @@ class BriefWrapper extends React.Component {
 		);
 	}
 }
-
 export default BriefWrapper;

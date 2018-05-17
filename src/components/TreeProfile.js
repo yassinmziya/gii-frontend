@@ -30,7 +30,7 @@ class TreeProfile extends React.Component {
     }
 
     getData = () => {
-        Axios.get(prefix + `/v1/data/2017`).then((response) => {
+        Axios.get(prefix + `/v1/data/${this.props.year}`).then((response) => {
             const data =  response.data;
             var ISO3 = 'USA'
             if(this.props.report.summary) {
@@ -51,7 +51,7 @@ class TreeProfile extends React.Component {
         // var ind = this.props.indicators.filter((x) => {
         //     return (x != null);
         // })
-        Axios.get(`http://localhost:3001/api/v1/categories/2016`).then((res) => {
+        Axios.get(`http://localhost:3001/api/v1/categories/${this.props.year}`).then((res) => {
             console.log(res.data)
 
             this.setState({
