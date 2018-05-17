@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import MapDisplayBox from "../map/MapDisplayBox";
 import axios from 'axios';
 import AnimatedMap from "../map/worldmap2";
@@ -7,6 +8,7 @@ import ContextDisplayBox from "../map/ContextDisplayBox";
 import ProfilePage from "../map/ProfilePage";
 import {Link, animatedScroll as scroll, scrollSpy, scroller} from "react-scroll";
 import PageWrap from '../../../PageWrap';
+import TreeProfile from '../../../TreeProfile';
 //import "../map/ScrollDownButton.css"
 /**
 This is used for single country profile.
@@ -33,11 +35,10 @@ class Sample extends React.Component {
 	}
 
 	changePage() {
-		scroller.scrollTo('MockUpProfilePage', {
-			duration: 800,
-			delay: 0,
-			smooth: "easeInOutQuart",
-		});
+		ReactDOM.render(
+			<TreeProfile />,
+			document.getElementById("TreeProfile")
+		);
 	}
     render() {
   /**
@@ -61,7 +62,6 @@ class Sample extends React.Component {
 		        	    marginLeft: 10,
 		            }}/>
 		      </MapDisplayBox>
-		      
 		      <div className="ScrollDownButton" onClick={this.changePage}
 		              style={{
                           display: "inline",
@@ -71,7 +71,9 @@ class Sample extends React.Component {
                       <polygon className="arrow-bottom" points="37.6,64 0,36.1 5.1,32.8 37.6,56.8 70.4,32.8 75.5,36.1 "/>
                     </svg>
 		      </div>
+		      <div id="TreeProfile" />
               </div>
+              <TreeProfile />
 			</PageWrap>
 	    );
   }

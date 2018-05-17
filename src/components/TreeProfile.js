@@ -73,7 +73,7 @@ class TreeProfile extends React.Component {
     // }
 
     createNewChart = () => {
-        var svg = d3.select("svg"),
+        var svg = d3.select("svg#haha"),
             width = +svg.attr("style").substring(6, 10),
             height = +svg.attr("style").substring(22, 26),
             g = svg.append("g").attr("transform", "translate(20,0)");
@@ -219,7 +219,6 @@ class TreeProfile extends React.Component {
         //     .attr("class","xAxis")
         //     .attr("transform", "translate(" + 7 + "," + -14 + ")")
         //     .call(xAxis);
-
         // tick mark for x-axis
         firstEndNode.insert("g")
             .attr("class", "grid")
@@ -302,7 +301,7 @@ class TreeProfile extends React.Component {
         return (
             <div>
                 <button onClick={this.createNewChart}>Tree Profile</button>
-                <svg style={{width: 980, height: 7000}}></svg>
+                <svg id="haha" style={{width: 980, height: 7000}}></svg>
             </div>
         );
     }
