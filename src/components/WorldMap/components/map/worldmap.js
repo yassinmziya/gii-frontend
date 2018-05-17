@@ -9,8 +9,6 @@ import {
 } from 'react-simple-maps';
 import {Motion, spring} from 'react-motion';
 import Link from 'react-router-dom/Link';
-import {Tooltip, actions} from 'redux-tooltip';
-import {initStore} from './store';
 /**
 The worldmap component, which can be rotated and clicked. 
 */
@@ -19,8 +17,6 @@ const wrapperStyles = {
 	maxWidth: 860,
 	margin: '0 auto'
 };
-
-const {show, hide} = actions;
 
 var topofile = require('./topojson_maps/world-50m.json');
 var projectionconfig = {
@@ -51,21 +47,6 @@ var mapStyle = {
 
 function mapClick(geography) {
 	console.log('Country: ', geography.id);
-}
-
-function handleMouseMove(geography, evt) {
-	const x = evt.clientX;
-	const y = evt.clientY + window.pageYOffset;
-	this.props.dispatch(
-		show({
-			origin: {x, y},
-			content: geography.properties.name,
-		})
-	);
-}
-
-function handleMouseLeave() {
-	this.props.dispatch(hide());
 }
 
 const Worldmap = ({center}) => (

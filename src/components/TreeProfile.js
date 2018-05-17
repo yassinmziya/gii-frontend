@@ -219,7 +219,6 @@ class TreeProfile extends React.Component {
         //     .attr("class","xAxis")
         //     .attr("transform", "translate(" + 7 + "," + -14 + ")")
         //     .call(xAxis);
-
         // tick mark for x-axis
         firstEndNode.insert("g")
             .attr("class", "grid")
