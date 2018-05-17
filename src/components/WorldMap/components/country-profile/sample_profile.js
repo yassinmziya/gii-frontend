@@ -73,6 +73,7 @@ class Sample extends React.Component {
 		      </div>
 		      <div id="TreeProfile" />
               </div>
+              <TreeProfile />
 			</PageWrap>
 	    );
   }
