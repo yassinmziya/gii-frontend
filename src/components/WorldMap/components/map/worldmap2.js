@@ -14,6 +14,7 @@ import * as bababa from "d3"
 import "./worldmap2.css";
 import Axios from "axios";
 import ContextDisplayBox from "../map/ContextDisplayBox";
+import TreeProfile from '../../../TreeProfile';
 
 var prefix = "http://localhost:3001/api";
 
@@ -104,12 +105,12 @@ class AnimatedMap extends React.Component {
 
 	handleMouseScroll(event) {
 		
-		if (event.deltaY<0) {
+		if (event.deltaY<0 && this.state.zoom < 15) {
 			this.setState({
 				zoom: this.state.zoom * 2,
 			});
 		}
-		if (event.deltaY > 0) {
+		if (event.deltaY > 0 && this.state.zoom > 1) {
 			this.setState({
 				zoom: this.state.zoom / 2,
 			});
@@ -230,6 +231,9 @@ class AnimatedMap extends React.Component {
 		})
 	}
 	handleCleanClick() {
+		if (bababa.selectAll("svg#haha")) {
+            bababa.selectAll("svg#haha").remove();
+        }
 		document.getElementById("hola3").style.opacity = 0;
 	    document.getElementsByClassName("wrapper")[0].style.width = "100%";
 		ReactDOM.render(
@@ -264,12 +268,14 @@ class AnimatedMap extends React.Component {
 					height: "auto",
 				}}>
 				</div>
-		      </ContextDisplayBox>, document.getElementById("hola3"));
+		    </ContextDisplayBox>, document.getElementById("hola3")
+		);
 
 		console.log(geography);
 		var c = geography["properties"]["name"];
 		const ISO3 = geography["id"];
 		console.log(c);
+		this.props.summarize(ISO3, '2017');
 		for (var i = 0; i < countries.length; i++) {
 			if (countries[i]["name"] == c) {
 				console.log(countries[i]);
@@ -333,5 +339,4 @@ class AnimatedMap extends React.Component {
 		);
 	}
 }
-
 export default AnimatedMap

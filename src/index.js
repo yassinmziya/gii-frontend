@@ -35,8 +35,6 @@ ReactDOM.render(
                 <Route exact path='/visualization' component={DataVisualiztion}/>
                 <Route exact path='/test' component={Test}/>
                 <Route exact path='/report' component={Sample} />
-                <Route exact path='/report/:iso3' component={Country}/>
-
             </div>
         </BrowserRouter>
     </Provider>, document.getElementById('root'));

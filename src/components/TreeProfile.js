@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import * as d3 from "d3";
 // import * as abc from "d3-request";
 import Axios from 'axios';
@@ -19,18 +20,27 @@ class TreeProfile extends React.Component {
             year: 2016,
             records: [],
             variables: [],
-            countries: ['us']};
+            countries: []};
     }
 
     getCountries = () => {
-        return this.state.countries;
+        if(this.props.report.summary) {
+            return [this.props.report.summary.iso3];
+        }
     }
 
     getData = () => {
-        Axios.get(prefix + `/v1/data/${this.props.year}`).then((response) => {
+        console.log("hi");
+        var address = `http://localhost:3001/api/v1/data/${this.state.year}`;
+        if (this.props.report.summary) {address = `http://localhost:3001/api/v1/data/${this.props.report.year}`;}
+        Axios.get(address).then((response) => {
             const data =  response.data;
+            var iso3_name = "SWE";
+            if (this.props.report.summary) {
+                iso3_name = this.props.report.summary.iso3;
+            }
             var records = data.filter((x)=>{
-                return (this.props.iso).includes(x.ISO3)
+                return ([iso3_name]).includes(x.ISO3)
             })
             console.log(data);
             this.setState((prevState) => ({
@@ -44,7 +54,13 @@ class TreeProfile extends React.Component {
         // var ind = this.props.indicators.filter((x) => {
         //     return (x != null);
         // })
-        Axios.get(`http://localhost:3001/api/v1/categories/${this.props.year}`).then((res) => {
+        console.log("hello");
+        var address = `http://localhost:3001/api/v1/categories/${this.state.year}`;
+        if (this.props.report.summary) {
+            console.log(this.props.report.summary.iso3);
+            address = `http://localhost:3001/api/v1/categories/${this.props.report.year}`;
+        }
+        Axios.get(address).then((res) => {
             console.log(res.data)
 
             this.setState({
@@ -53,11 +69,18 @@ class TreeProfile extends React.Component {
             })
         })
     }
-
+    /**
     componentDidMount = () => {
         this.getData()
         this.getVariables()
     }
+    */
+    /**
+    componentDidUpdate = () => {
+        this.getData()
+        this.getVariables()
+    }
+    */
     //
     // componentWillReceiveProps = (nextProps, nextState) => {
     //     console.log('cur',this.props)
@@ -71,9 +94,22 @@ class TreeProfile extends React.Component {
     //         this.getVariables()
     //     }
     // }
+    clearChart = () => {
+
+    }
 
     createNewChart = () => {
-        var svg = d3.select("svg"),
+        if (d3.selectAll("svg#haha")) {
+            d3.selectAll("svg#haha").remove();
+        }
+        d3.select("div#Treeprofile").append("svg")
+            .attr("id", "haha")
+            .style("width", 980)
+            .style("height", 7000);
+            
+        this.getData();
+        this.getVariables();
+        var svg = d3.select("svg#haha"),
             width = +svg.attr("style").substring(6, 10),
             height = +svg.attr("style").substring(22, 26),
             g = svg.append("g").attr("transform", "translate(20,0)");
@@ -148,6 +184,7 @@ class TreeProfile extends React.Component {
             })
         }
 
+        if(this.props.report.summary) {console.log(this.props.report.summary.iso3)}
         // abc.csv(csvfile, row, function(error, data) {
         var data = realdata;
         console.log(data);
@@ -219,7 +256,6 @@ class TreeProfile extends React.Component {
         //     .attr("class","xAxis")
         //     .attr("transform", "translate(" + 7 + "," + -14 + ")")
         //     .call(xAxis);
-
         // tick mark for x-axis
         firstEndNode.insert("g")
             .attr("class", "grid")
@@ -254,6 +290,8 @@ class TreeProfile extends React.Component {
         d3.selectAll(".node--leaf-g")
             .on("mouseover", handleMouseOver)
             .on("mouseout", handleMouseOut);
+
+        //document.getElementById("haha").style.width = 1200;
 
         function handleMouseOver(d) {
             var leafG = d3.select(this);
@@ -300,18 +338,19 @@ class TreeProfile extends React.Component {
     render() {
         // this.createNewChart;
         return (
-            <div>
-                <button onClick={this.createNewChart}>Tree Profile</button>
-                <svg style={{width: 980, height: 7000}}></svg>
+            <div style={{float: "left", marginTop: 5,}}>
+                <button style={{position: "static"}} onClick={this.createNewChart}>Double Click for Tree Profile</button>
+                <div id="Treeprofile">
+                </div>
             </div>
         );
     }
 
 }
 
-function mapStateToProps() {
+function mapStateToProps(state) {
     return {
-        // countries: state.countries
+        report: state.report
     }
 }
 
