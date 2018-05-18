@@ -9,6 +9,9 @@ import ProfilePage from "../map/ProfilePage";
 import {Link, animatedScroll as scroll, scrollSpy, scroller} from "react-scroll";
 import PageWrap from '../../../PageWrap';
 import TreeProfile from '../../../TreeProfile';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import actions from '../../../actions';
 //import "../map/ScrollDownButton.css"
 /**
 This is used for single country profile.
@@ -53,7 +56,7 @@ class Sample extends React.Component {
 			<PageWrap>
 			  <div className="content" style={{width: "100%", height: "100%"}}>
 			  <MapDisplayBox>
-		        <AnimatedMap />
+		        <AnimatedMap summarize={this.props.summarize}/>
 		        <div id="hola3" style={{
 		        	    width: "49%", 
 		        	    float: "left",
@@ -61,6 +64,7 @@ class Sample extends React.Component {
 		        	    transition: "opacity 1s",
 		        	    marginLeft: 10,
 		            }}/>
+		        <TreeProfile />
 		      </MapDisplayBox>
 		      <div className="ScrollDownButton" onClick={this.changePage}
 		              style={{
@@ -71,12 +75,22 @@ class Sample extends React.Component {
                       <polygon className="arrow-bottom" points="37.6,64 0,36.1 5.1,32.8 37.6,56.8 70.4,32.8 75.5,36.1 "/>
                     </svg>
 		      </div>
-		      <div id="TreeProfile" />
               </div>
-              <TreeProfile />
 			</PageWrap>
 	    );
   }
 }
  
-export default Sample;
+function mapStateToProps(state) {
+	return {
+		report: state.report
+	}
+}
+
+function matchDispatchToProps(dispatch) {
+	return bindActionCreators({
+		summarize: actions.summarize
+	}, dispatch);
+}
+
+export default connect(mapStateToProps, matchDispatchToProps)(Sample);
