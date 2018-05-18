@@ -69,11 +69,12 @@ class TreeProfile extends React.Component {
             })
         })
     }
-
+    /**
     componentDidMount = () => {
         this.getData()
         this.getVariables()
     }
+    */
     /**
     componentDidUpdate = () => {
         this.getData()
@@ -93,15 +94,13 @@ class TreeProfile extends React.Component {
     //         this.getVariables()
     //     }
     // }
+    clearChart = () => {
+
+    }
 
     createNewChart = () => {
-        /**
-        ReactDOM.render(
-            <svg id="haha" style={{width: 980, height: 7000}}></svg>, 
-            document.getElementById("Treeprofile")
-        );
-        */
-
+        d3.selectAll("svg#haha").remove();
+        d3.select("div#Treeprofile").append("svg").attr("id", "haha").style("width", 980).style("height", 7000);
         this.getData();
         this.getVariables();
         var svg = d3.select("svg#haha"),
@@ -334,9 +333,9 @@ class TreeProfile extends React.Component {
         // this.createNewChart;
         return (
             <div style={{float: "left", marginTop: 5,}}>
-                <button style={{position: "static"}} onClick={this.createNewChart}>Tree Profile</button>
+                <button style={{position: "static"}} onClick={this.createNewChart}>Double Click for Tree Profile</button>
                 <div id="Treeprofile">
-                <svg id="haha" style={{width: 980, height: 7000}}></svg>
+                    <svg id="haha" style={{width: 980, height: 7000}}></svg>
                 </div>
             </div>
         );
