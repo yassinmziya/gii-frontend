@@ -5,13 +5,14 @@ import axios from 'axios';
 import AnimatedMap from "../map/worldmap2";
 import BriefWrapper from "../map/Breifing_wrapper";
 import ContextDisplayBox from "../map/ContextDisplayBox";
-import ProfilePage from "../map/ProfilePage";
 import {Link, animatedScroll as scroll, scrollSpy, scroller} from "react-scroll";
 import PageWrap from '../../../PageWrap';
 import TreeProfile from '../../../TreeProfile';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import actions from '../../../actions';
+import {Tab, Segment} from 'semantic-ui-react';
+import ProfilePage from '../../../ProfilePage';
 //import "../map/ScrollDownButton.css"
 /**
 This is used for single country profile.
@@ -51,31 +52,46 @@ class Sample extends React.Component {
 						data: response.data.countries[0]["iso3"],
 					}))
 				});*/
-	
+		const summary = this.props.report.summary;
+		var errorBox 
+		if(!summary) {
+			errorBox = <Segment invertedcolor='red' secondary>Select an economy</Segment>
+		}
+
+		const panes = [
+            { menuItem: 'Country Profile', render: () => <Tab.Pane attached={false}><ProfilePage   economy={summary.economy} iso={summary.iso3} year={this.props.report.year}/></Tab.Pane> },
+            /*{ menuItem: 'Country Tree', render: () => <Tab.Pane attached={false}><TreeProfile iso={summary.iso3} year={this.props.report.year}/></Tab.Pane> },*/
+            { menuItem: 'Country Briefing', render: () => <Tab.Pane attached={false}><TreeProfile /></Tab.Pane> },
+        ]
 	    return (
 			<PageWrap>
-			  <div className="content" style={{width: "100%", height: "100%"}}>
-			  <MapDisplayBox>
-		        <AnimatedMap summarize={this.props.summarize}/>
-		        <div id="hola3" style={{
-		        	    width: "49%", 
-		        	    float: "left",
-		        	    opacity: 0,
-		        	    transition: "opacity 1s",
-		        	    marginLeft: 10,
-		            }}/>
-		        <TreeProfile />
-		      </MapDisplayBox>
-		      <div className="ScrollDownButton" onClick={this.changePage}
-		              style={{
-                          display: "inline",
-                          marginLeft: "50%",
-		              }}>
-                    <svg id="DownArrow">
-                      <polygon className="arrow-bottom" points="37.6,64 0,36.1 5.1,32.8 37.6,56.8 70.4,32.8 75.5,36.1 "/>
-                    </svg>
-		      </div>
-              </div>
+			  	<div className="content" style={{width: "100%", height: "100%"}}>
+			  		<MapDisplayBox>
+		        		<AnimatedMap summarize={this.props.summarize}/>
+		        		<div id="hola3" style={{
+		        	    	width: "49%", 
+		        	    	float: "left",
+		        	    	opacity: 0,
+		        	    	transition: "opacity 1s",
+							marginLeft: 10,
+							marginBottom: 0,
+		        		}}/>
+		        		
+		      		</MapDisplayBox>
+		      		<div
+					  style={{
+						  	height: "auto",
+							width: "100%",
+							margin: "10px 0",
+							float: "left"
+						}}
+		        	>	
+						<div className="title">
+                        	<h1>{summary ? summary.economy : "Select An Economy"}</h1>
+                    	</div>
+                    	{summary ? <Tab menu={{ secondary: true, pointing: true }} panes={panes}/>: errorBox}
+		      			</div>
+              	</div>
 			</PageWrap>
 	    );
   }

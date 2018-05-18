@@ -8,7 +8,7 @@ class MapDisplayBox extends React.Component {
                 padding: "2%",
                 width: "100%",
                 height: "auto",
-                margin: "3% auto",
+                margin: "0% auto",
                 backgroundColor: "white",
                 borderRadius: ".28571429rem .28571429rem .28571429rem .28571429rem",
             }}>{this.props.children}</div>
