@@ -14,6 +14,7 @@ import * as bababa from "d3"
 import "./worldmap2.css";
 import Axios from "axios";
 import ContextDisplayBox from "../map/ContextDisplayBox";
+import TreeProfile from '../../../TreeProfile';
 
 var prefix = "http://localhost:3001/api";
 
@@ -264,7 +265,8 @@ class AnimatedMap extends React.Component {
 					height: "auto",
 				}}>
 				</div>
-		      </ContextDisplayBox>, document.getElementById("hola3"));
+		    </ContextDisplayBox>, document.getElementById("hola3")
+		);
 
 		console.log(geography);
 		var c = geography["properties"]["name"];
