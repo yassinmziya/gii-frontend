@@ -105,12 +105,12 @@ class AnimatedMap extends React.Component {
 
 	handleMouseScroll(event) {
 		
-		if (event.deltaY<0) {
+		if (event.deltaY<0 && this.state.zoom < 15) {
 			this.setState({
 				zoom: this.state.zoom * 2,
 			});
 		}
-		if (event.deltaY > 0) {
+		if (event.deltaY > 0 && this.state.zoom > 1) {
 			this.setState({
 				zoom: this.state.zoom / 2,
 			});
@@ -231,6 +231,9 @@ class AnimatedMap extends React.Component {
 		})
 	}
 	handleCleanClick() {
+		if (bababa.selectAll("svg#haha")) {
+            bababa.selectAll("svg#haha").remove();
+        }
 		document.getElementById("hola3").style.opacity = 0;
 	    document.getElementsByClassName("wrapper")[0].style.width = "100%";
 		ReactDOM.render(

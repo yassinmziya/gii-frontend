@@ -99,8 +99,14 @@ class TreeProfile extends React.Component {
     }
 
     createNewChart = () => {
-        d3.selectAll("svg#haha").remove();
-        d3.select("div#Treeprofile").append("svg").attr("id", "haha").style("width", 980).style("height", 7000);
+        if (d3.selectAll("svg#haha")) {
+            d3.selectAll("svg#haha").remove();
+        }
+        d3.select("div#Treeprofile").append("svg")
+            .attr("id", "haha")
+            .style("width", 980)
+            .style("height", 7000);
+            
         this.getData();
         this.getVariables();
         var svg = d3.select("svg#haha"),
@@ -335,7 +341,6 @@ class TreeProfile extends React.Component {
             <div style={{float: "left", marginTop: 5,}}>
                 <button style={{position: "static"}} onClick={this.createNewChart}>Double Click for Tree Profile</button>
                 <div id="Treeprofile">
-                    <svg id="haha" style={{width: 980, height: 7000}}></svg>
                 </div>
             </div>
         );
