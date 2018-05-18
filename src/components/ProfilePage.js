@@ -47,7 +47,7 @@ export default class ProfilePage extends React.Component {
         var data = this.state.indicatorCodes.map((code) => {
             return [code, this.state.indicatorNames[code], this.state.records[code + "score"], this.state.records[code + "rank"]] 
         })
-        console.log(data)
+        console.log(this.props)
         
         return(
             <div>
@@ -55,7 +55,7 @@ export default class ProfilePage extends React.Component {
             <div>
                 <Segment textAlign='center' >
                 <Header as='h1'>
-                {this.state.economy}
+                {this.props.economy}
                 <Header sub>{this.props.iso} | {this.props.year}</Header>
                 </Header>
                 </Segment>
@@ -171,5 +171,6 @@ export default class ProfilePage extends React.Component {
 
 ProfilePage.propTypes = {
     year : PropTypes.string.isRequired,
-    iso : PropTypes.string.isRequired
+    iso : PropTypes.string.isRequired,
+    economy: PropTypes.string.isRequired
 }
